@@ -1,7 +1,5 @@
 package com.example.votingapp.Retrofit;
 
-import com.example.votingapp.LoginResult;
-
 import java.util.HashMap;
 
 import retrofit2.Call;

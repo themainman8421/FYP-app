@@ -39,8 +39,8 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.Register).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent2 = new Intent(MainActivity.this, Register.class);
-                startActivity(intent2);
+                Intent intent = new Intent(MainActivity.this, Register.class);
+                startActivity(intent);
             }
         });
 
@@ -65,6 +65,9 @@ public class MainActivity extends AppCompatActivity {
 
                         if (response.code() == 200){
                             Toast.makeText(MainActivity.this, "Success!!", Toast.LENGTH_LONG).show();
+
+                            Intent intent = new Intent(MainActivity.this, Home.class);
+                            startActivity(intent);
 
                         } else if (response.code() == 404){
                             Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_LONG).show();
