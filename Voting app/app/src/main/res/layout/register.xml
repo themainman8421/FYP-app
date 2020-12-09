@@ -7,11 +7,21 @@
     tools:context=".MainActivity">
 
     <Button
-        android:id="@+id/Register"
+        android:id="@+id/Login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:text="Register"></Button>
+        android:text="Login"></Button>
+
+    <EditText
+        android:id="@+id/nameEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="8dp"
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/Login"
+        android:hint="Enter name"></EditText>
 
     <EditText
         android:id="@+id/emailEdit"
@@ -20,7 +30,7 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/Register"
+        android:layout_below="@+id/nameEdit"
         android:hint="Enter email"></EditText>
 
     <EditText
@@ -37,9 +47,9 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="4dp"
-        android:text="Log in"
+        android:text="Register"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/passwordEdit"
-        android:id="@+id/loginbtn"></Button>
+        android:id="@+id/registerbtn"></Button>
 
 </RelativeLayout>
