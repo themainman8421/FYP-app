@@ -4,40 +4,89 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-
     <Button
-        android:id="@+id/submit"
-        android:layout_width="200dp"
-        android:layout_height="wrap_content"
+        android:id="@+id/back"
+        android:layout_width="117dp"
+        android:layout_height="30dp"
         android:layout_alignParentBottom="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="691dp"
+        android:background="#0f0"
+        android:onClick="switchScreen"
+        android:text="Back"
+        android:textColor="#fff"
+        android:textSize="8sp"></Button>
+
+    <TextView
+        android:id="@+id/votingtitletextview"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_margin="20dp"
-        android:background="#0f0"
-        android:text="Submit"
-        android:textColor="#fff"
-        android:textSize="20sp" />
+        android:layout_marginTop="50dp"
+        android:text="Poll Title"
+        android:textSize="20dp" ></TextView>
 
-    <Button
-        android:id="@+id/fg"
-        android:layout_width="200dp"
+    <EditText
+        android:id="@+id/editTextTextPersonName"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="432dp"
-        android:background="#0f0"
-        android:text="Submit"
-        android:textColor="#fff"
-        android:textSize="20sp" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="70dp"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:text="Name" ></EditText>
 
-    <Button
-        android:id="@+id/btn"
-        android:layout_width="200dp"
+    <TextView
+        android:id="@+id/votingoptionstextView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="20dp"
-        android:layout_marginBottom="257dp"
-        android:background="#0f0"
-        android:text="Submit"
-        android:textColor="#fff"
-        android:textSize="20sp" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="120dp"
+        android:text="Which voting method would you like to use?"
+        android:textSize="20dp" ></TextView>
+
+    <RadioGroup
+        android:id="@+id/radioGroup"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="150dp"
+        android:weightSum="1">
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_gravity="center_horizontal"
+            android:checked="false"
+            android:text="Voting Method 1"
+            android:textSize="20dp" ></RadioButton>
+
+        <RadioButton
+            android:id="@+id/radioButton2"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_gravity="center_horizontal"
+            android:checked="false"
+            android:text="Voting Method 2"
+            android:textSize="20dp" ></RadioButton>
+
+        <RadioButton
+            android:id="@+id/radioButton3"
+            android:layout_width="wrap_content"
+            android:layout_height="55dp"
+            android:layout_gravity="center_horizontal"
+            android:checked="false"
+            android:text="Voting Method 3"
+            android:textSize="20dp" ></RadioButton>
+    </RadioGroup>
+
+    <ListView
+        android:id="@android:id/list"
+        android:layout_width="407dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="320dp"
+        android:dividerHeight="3dp"
+        android:scrollbars="none"/>
+
+
 </RelativeLayout>
