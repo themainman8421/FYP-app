@@ -13,4 +13,7 @@ public interface RetrofitInterface {
 
     @POST("/users/Register")
     Call<Void> executeSignup(@Body HashMap<String, String> map);
+
+    @POST("/poll/newPoll")
+    Call<Void> executenewPoll(@Body HashMap<String, String> map);
 }
