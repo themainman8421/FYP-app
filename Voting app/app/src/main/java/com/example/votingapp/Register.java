@@ -3,6 +3,7 @@ package com.example.votingapp;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -46,35 +47,51 @@ public class Register extends Activity {
         passwordEdit = (EditText)findViewById(R.id.passwordEdit);
         registerbtn = (Button) findViewById(R.id.registerbtn);
 
+        String email = emailEdit.getText().toString();
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
         registerbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                HashMap<String, String> map = new HashMap<>();
 
-                map.put("name", nameEdit.getText().toString());
-                map.put("email", emailEdit.getText().toString());
-                map.put("password", passwordEdit.getText().toString());
+                if(nameEdit.length() == 0){
+                    nameEdit.setError("Name must be entered");
+                }
 
-                Call<Void> call = RetrofitInterface.executeSignup(map);
+                if(!email.matches(emailPattern)){
+                    emailEdit.setError("Correct email address must be entered");
+                }
 
-                call.enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
+                if(passwordEdit.length() < 8){
+                    passwordEdit.setError("Password must be at least 8 characters long");
+                }else {
 
-                        if (response.code() == 200){
-                            Toast.makeText(Register.this, "Signed up succesfully", Toast.LENGTH_LONG).show();
+                    HashMap<String, String> map = new HashMap<>();
 
-                        } else if (response.code() == 404){
-                            Toast.makeText(Register.this, "Already Registered", Toast.LENGTH_LONG).show();
+                    map.put("name", nameEdit.getText().toString());
+                    map.put("email", emailEdit.getText().toString());
+                    map.put("password", passwordEdit.getText().toString());
+
+                    Call<Void> call = RetrofitInterface.executeSignup(map);
+
+                    call.enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+
+                            if (response.code() == 200) {
+                                Toast.makeText(Register.this, "Signed up succesfully", Toast.LENGTH_LONG).show();
+
+                            } else if (response.code() == 404) {
+                                Toast.makeText(Register.this, "Already Registered", Toast.LENGTH_LONG).show();
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
-                        Toast.makeText(Register.this, t.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                });
-            }
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            Toast.makeText(Register.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }    }
         });
     }
 }

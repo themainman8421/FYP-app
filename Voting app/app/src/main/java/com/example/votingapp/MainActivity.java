@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -47,6 +48,9 @@ public class MainActivity extends AppCompatActivity {
         emailEdit = (EditText)findViewById(R.id.emailEdit);
         passwordEdit = (EditText)findViewById(R.id.passwordEdit);
         loginbtn = (Button) findViewById(R.id.loginbtn);
+
+        String email = emailEdit.getText().toString();
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
