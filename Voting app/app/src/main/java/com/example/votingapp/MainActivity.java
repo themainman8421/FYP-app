@@ -68,7 +68,10 @@ public class MainActivity extends AppCompatActivity {
                             startActivity(intent);
 
                         } else if (response.code() == 404){
-                            Toast.makeText(MainActivity.this, "Login Failed", Toast.LENGTH_LONG).show();
+                            emailEdit.setError("Email not registered");
+
+                        } else if (response.code() == 401){
+                            passwordEdit.setError("Password is incorrect");
                         }
                     }
 

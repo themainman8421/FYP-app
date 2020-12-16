@@ -82,9 +82,11 @@ public class Register extends Activity {
 
                             if (response.code() == 200) {
                                 Toast.makeText(Register.this, "Signed up succesfully", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(Register.this, MainActivity.class);
+                                startActivity(intent);
 
                             } else if (response.code() == 404) {
-                                Toast.makeText(Register.this, "Already Registered", Toast.LENGTH_LONG).show();
+                                emailEdit.setError("Email already in use");
                             }
                         }
 
