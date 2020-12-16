@@ -47,7 +47,7 @@ public class Register extends Activity {
         passwordEdit = (EditText)findViewById(R.id.passwordEdit);
         registerbtn = (Button) findViewById(R.id.registerbtn);
 
-        String email = emailEdit.getText().toString();
+        String email = emailEdit.getText().toString().trim();
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
 
         registerbtn.setOnClickListener(new View.OnClickListener() {
@@ -58,8 +58,10 @@ public class Register extends Activity {
                     nameEdit.setError("Name must be entered");
                 }
 
-                if(!email.matches(emailPattern)){
-                    emailEdit.setError("Correct email address must be entered");
+                if (emailEdit.getText().toString().trim().matches(emailPattern)) {
+                    //Toast.makeText(getApplicationContext(),"valid email address",Toast.LENGTH_SHORT).show();
+                } else {
+                    emailEdit.setError("Must provide a valid email");
                 }
 
                 if(passwordEdit.length() < 8){
