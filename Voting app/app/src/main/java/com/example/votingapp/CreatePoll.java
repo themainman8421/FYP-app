@@ -8,12 +8,16 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.votingapp.Retrofit.RetrofitClient;
 import com.example.votingapp.Retrofit.RetrofitInterface;
 
 import java.util.HashMap;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 import retrofit2.Retrofit;
 
 public class CreatePoll extends Activity {
@@ -47,6 +51,15 @@ public class CreatePoll extends Activity {
         submitbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //https://stackoverflow.com/questions/6440259/how-to-get-the-selected-index-of-a-radiogroup-in-android
+                int radioButtonID = radioGroup.getCheckedRadioButtonId();
+                View radioButton = radioGroup.findViewById(radioButtonID);
+                int idx = radioGroup.indexOfChild(radioButton);
+
+                RadioButton r = (RadioButton) radioGroup.getChildAt(idx);
+                String selectedtext = r.getText().toString();
+
+
                 HashMap<String, String> map = new HashMap<>();
 
                 map.put("title", title.getText().toString());
@@ -54,7 +67,24 @@ public class CreatePoll extends Activity {
                 map.put("option2", option2.getText().toString());
                 map.put("option3", option3.getText().toString());
                 map.put("code", pollcodeedittext.getText().toString());
-                map.put("votingmethod", radioGroup.getTransitionName().toString());
+                map.put("votingmethod", selectedtext);
+
+                Call<Void> call = RetrofitInterface.executenewPoll(map);
+
+                call.enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+
+                        if(response.code() == 200){
+                            Toast.makeText(CreatePoll.this, "Poll created", Toast.LENGTH_LONG).show();
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        Toast.makeText(CreatePoll.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
 
             }
         });

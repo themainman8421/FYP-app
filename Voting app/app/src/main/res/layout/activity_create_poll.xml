@@ -11,8 +11,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:onClick="switchScreen"
-        android:text="Back"
-        android:textSize="10dp"></Button>
+        android:text="Back"></Button>
 
     <TextView
         android:id="@+id/votingtitletextview"
@@ -152,8 +151,7 @@
         android:layout_below="@id/pollcodeedittext"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        android:text="Submit"
-        android:textSize="10dp"></Button>
+        android:text="Submit"></Button>
 
 
 </RelativeLayout>

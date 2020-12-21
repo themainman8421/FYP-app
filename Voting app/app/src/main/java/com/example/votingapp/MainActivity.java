@@ -62,13 +62,13 @@ public class MainActivity extends AppCompatActivity {
                     public void onResponse(Call<Void> call, Response<Void> response) {
 
                         if (response.code() == 200){
-                            Toast.makeText(MainActivity.this, "Success!!", Toast.LENGTH_LONG).show();
+                            Toast.makeText(MainActivity.this, "You have successfully logged in", Toast.LENGTH_LONG).show();
 
                             Intent intent = new Intent(MainActivity.this, Home.class);
                             startActivity(intent);
 
                         } else if (response.code() == 404){
-                            emailEdit.setError("Email not registered");
+                            emailEdit.setError("Email is not registered");
 
                         } else if (response.code() == 401){
                             passwordEdit.setError("Password is incorrect");
