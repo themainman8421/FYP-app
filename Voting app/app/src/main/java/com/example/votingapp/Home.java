@@ -26,5 +26,13 @@ public class Home extends Activity {
                 startActivity(intent);
             }
         });
+
+        findViewById(R.id.Join_poll).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home.this, JoinPoll.class);
+                startActivity(intent);
+            }
+        });
     }
 }
