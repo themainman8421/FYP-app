@@ -4,10 +4,9 @@ import com.example.votingapp.Poll;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import retrofit2.Call;
-import retrofit2.Callback;
+
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -29,4 +28,7 @@ public interface RetrofitInterface {
 
     @GET("/poll/getPoll")
     Call<List<Poll>> getPoll(@QueryMap HashMap<String, String> map);
+
+    @POST("/poll/increaseVote")
+    Call<Void> increaseVote(@QueryMap HashMap<String, String> map);
 }
