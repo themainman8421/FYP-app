@@ -9,9 +9,12 @@ public class Poll {
 
     private Options options;
 
-    public Poll(String title, Options options) {
+    private Votes votes;
+
+    public Poll(String title, Options options, Votes votes) {
         this.title = title;
         this.options = options;
+        this.votes = votes;
     }
 
     public String getTitle() {
@@ -20,5 +23,9 @@ public class Poll {
 
     public Options getOptions() {
         return options;
+    }
+
+    public Votes getVotes() {
+        return votes;
     }
 }

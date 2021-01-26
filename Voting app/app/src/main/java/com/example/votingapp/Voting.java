@@ -1,6 +1,7 @@
 package com.example.votingapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -42,16 +43,12 @@ public class Voting extends Activity {
 
         String code = getIntent().getStringExtra("code");
 
-        int increase = 1;
-
         titleTextView = findViewById(R.id.titleTextView);
         option1 = findViewById(R.id.radioButton);
         option2 = findViewById(R.id.radioButton2);
         option3 = findViewById(R.id.radioButton3);
         submitbtn = findViewById(R.id.submitbtn);
         radioGroup = findViewById(R.id.radioGroup);
-
-
 
         HashMap<String, String> map = new HashMap<>();
         map.put("code", code);
@@ -106,7 +103,11 @@ public class Voting extends Activity {
                 call.enqueue(new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-
+                        if (response.code() == 200){
+                            Toast.makeText(Voting.this, "Vote successfully placed", Toast.LENGTH_LONG).show();
+                            Intent intent = new Intent(Voting.this, Results.class);
+                            startActivity(intent);
+                        }
                     }
 
                     @Override
