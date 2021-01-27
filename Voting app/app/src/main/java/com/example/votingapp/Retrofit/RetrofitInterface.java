@@ -33,5 +33,5 @@ public interface RetrofitInterface {
     Call<Void> increaseVote(@QueryMap HashMap<String, String> map);
 
     @GET("/results/")
-    Call<List<Poll>> getResults(@QueryMap HashMap<String, String> map);
+    Call<Poll> getResults(@QueryMap HashMap<String, String> map);
 }

@@ -7,7 +7,7 @@
     tools:context=".MainActivity">
 
 
-    winner
+<!--    winner-->
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -16,15 +16,65 @@
         android:layout_marginTop="100dp"
         ></TextView>
 
-    <ListView android:id="@android:id/list"
+<!--    option 1-->
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_centerHorizontal="true"
+        android:id="@+id/option1"
         android:layout_below="@+id/winner"
-        android:layout_marginTop="50dp"
-        android:layout_marginLeft="100dp"
-        android:layout_marginRight="100dp"
-        ></ListView>
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="175dp"
+        ></TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/option1votes"
+        android:layout_below="@+id/winner"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/option1"
+        android:layout_marginLeft="20dp"
+        ></TextView>
+
+<!--    option 2-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/option2"
+        android:layout_below="@+id/option1"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="175dp"
+        ></TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/option2votes"
+        android:layout_below="@+id/option1votes"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/option2"
+        android:layout_marginLeft="20dp"
+        ></TextView>
+
+<!--    option 3-->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/option3"
+        android:layout_below="@+id/option2"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="175dp"
+        ></TextView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/option3votes"
+        android:layout_below="@+id/option2"
+        android:layout_marginTop="20dp"
+        android:layout_toRightOf="@id/option3"
+        android:layout_marginLeft="20dp"
+        ></TextView>
 
 
 

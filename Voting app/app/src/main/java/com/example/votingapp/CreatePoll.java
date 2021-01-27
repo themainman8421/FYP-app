@@ -69,6 +69,7 @@ public class CreatePoll extends Activity {
                 map.put("option2", option2.getText().toString());
                 map.put("option3", option3.getText().toString());
                 map.put("code", pollcodeedittext.getText().toString());
+                map.put("winner", "there current is no winner");
                 map.put("votingmethod", selectedtext);
 
                 Call<Void> call = RetrofitInterface.executenewPoll(map);

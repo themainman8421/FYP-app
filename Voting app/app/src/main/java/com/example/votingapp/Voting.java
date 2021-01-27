@@ -59,7 +59,7 @@ public class Voting extends Activity {
             @Override
             public void onResponse(Call<List<Poll>> call, Response<List<Poll>> response) {
 
-                if (response.code() == 200){
+                if (response.code() == 200 ){
 
                     List<Poll> polls = response.body();
 
@@ -106,6 +106,7 @@ public class Voting extends Activity {
                         if (response.code() == 200){
                             Toast.makeText(Voting.this, "Vote successfully placed", Toast.LENGTH_LONG).show();
                             Intent intent = new Intent(Voting.this, Results.class);
+                            intent.putExtra("code", code);
                             startActivity(intent);
                         }
                     }
