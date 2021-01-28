@@ -12,17 +12,31 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
-        android:text="Login"></Button>
+        android:text="Login"
+        android:layout_marginBottom="20dp"
+        android:background="@color/purple_500"
+        android:textColor="@color/white"
+        ></Button>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/voteImage"
+        android:layout_below="@+id/Login"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        android:src="@drawable/mobile_vote_image"
+        ></ImageView>
 
     <EditText
         android:id="@+id/nameEdit"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
         android:layout_marginBottom="8dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/Login"
-        android:hint="Enter name"></EditText>
+        android:layout_below="@+id/voteImage"
+        android:hint="Enter name"
+        ></EditText>
 
     <EditText
         android:id="@+id/emailEdit"
@@ -32,7 +46,8 @@
         android:layout_marginBottom="8dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/nameEdit"
-        android:hint="Enter email"></EditText>
+        android:hint="Enter email"
+        ></EditText>
 
     <EditText
         android:layout_width="300dp"
@@ -42,7 +57,8 @@
         android:id="@+id/passwordEdit"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/emailEdit"
-        android:inputType="textPassword" ></EditText>
+        android:inputType="textPassword"
+        ></EditText>
 
     <Button
         android:layout_width="wrap_content"
@@ -51,6 +67,9 @@
         android:text="Register"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/passwordEdit"
-        android:id="@+id/registerbtn"></Button>
+        android:id="@+id/registerbtn"
+        android:background="@color/purple_500"
+        android:textColor="@color/white"
+        ></Button>
 
 </RelativeLayout>

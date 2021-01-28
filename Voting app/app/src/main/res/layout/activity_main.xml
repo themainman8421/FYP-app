@@ -12,16 +12,25 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
+        android:layout_marginBottom="20dp"
         android:text="Register"></Button>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/voteImage"
+        android:layout_below="@+id/Register"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="50dp"
+        ></ImageView>
 
     <EditText
         android:id="@+id/emailEdit"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="200dp"
         android:layout_marginBottom="8dp"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/Register"
+        android:layout_below="@+id/voteImage"
         android:hint="Enter email"></EditText>
 
     <EditText

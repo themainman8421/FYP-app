@@ -30,13 +30,13 @@ public class Results extends Activity {
     RetrofitInterface RetrofitInterface;
     TextView winner, option1, option2, option3, option1votes, option2votes, option3votes;
 
-    String[] options = {
-            "one", "two", "three"
-    };
-
-    String[] vote = {
-            "1", "10", "100"
-    };
+//    String[] options = {
+//            "one", "two", "three"
+//    };
+//
+//    String[] vote = {
+//            "1", "10", "100"
+//    };
 
 
 

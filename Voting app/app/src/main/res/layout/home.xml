@@ -11,7 +11,9 @@
         android:layout_height="wrap_content"
         android:text="Create new poll"
         android:id="@+id/Create_new_poll"
-        android:layout_centerInParent="true" ></Button>
+        android:layout_centerInParent="true"
+        android:padding="10dp"
+        ></Button>
 
     <Button
         android:layout_width="wrap_content"
@@ -19,7 +21,13 @@
         android:text="Join poll"
         android:id="@+id/Join_poll"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/Create_new_poll" ></Button>
+        android:layout_below="@+id/Create_new_poll"
+        android:paddingLeft="10dp"
+        android:paddingBottom="10dp"
+        android:paddingRight="10dp"
+        android:paddingTop="10dp"
+        android:textStyle="bold"
+        ></Button>
 
     <Button
         android:layout_width="wrap_content"
@@ -27,6 +35,8 @@
         android:text="All Polls"
         android:id="@+id/All_Polls"
         android:layout_centerHorizontal="true"
-        android:layout_below="@+id/Join_poll" ></Button>
+        android:layout_below="@+id/Join_poll"
+        android:padding="10dp"
+        ></Button>
 
 </RelativeLayout>
