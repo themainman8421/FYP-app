@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/teal_200"
+    >
 
 
 <!--    winner-->
@@ -14,6 +16,12 @@
         android:id="@+id/winner"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="100dp"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"
         ></TextView>
 
 <!--    option 1-->
@@ -24,6 +32,12 @@
         android:layout_below="@+id/winner"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="175dp"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"
         ></TextView>
 
     <TextView
@@ -34,6 +48,12 @@
         android:layout_marginTop="20dp"
         android:layout_toRightOf="@id/option1"
         android:layout_marginLeft="20dp"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"
         ></TextView>
 
 <!--    option 2-->
@@ -44,6 +64,12 @@
         android:layout_below="@+id/option1"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="175dp"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"
         ></TextView>
 
     <TextView
@@ -54,6 +80,12 @@
         android:layout_marginTop="20dp"
         android:layout_toRightOf="@id/option2"
         android:layout_marginLeft="20dp"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"
         ></TextView>
 
 <!--    option 3-->
@@ -64,6 +96,12 @@
         android:layout_below="@+id/option2"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="175dp"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"
         ></TextView>
 
     <TextView
@@ -74,6 +112,12 @@
         android:layout_marginTop="20dp"
         android:layout_toRightOf="@id/option3"
         android:layout_marginLeft="20dp"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"
         ></TextView>
 
 

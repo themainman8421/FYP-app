@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/teal_200"
     tools:context=".MainActivity">
 
     <Button
@@ -28,6 +29,7 @@
         android:src="@drawable/mobile_vote_image"
         ></ImageView>
 
+
     <EditText
         android:id="@+id/nameEdit"
         android:layout_width="300dp"
@@ -36,6 +38,14 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/voteImage"
         android:hint="Enter name"
+        android:textAlignment="center"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"
         ></EditText>
 
     <EditText
@@ -47,6 +57,14 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/nameEdit"
         android:hint="Enter email"
+        android:textAlignment="center"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"
         ></EditText>
 
     <EditText
@@ -58,18 +76,27 @@
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/emailEdit"
         android:inputType="textPassword"
+        android:textAlignment="center"
+        android:textColorHint="@color/black"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"
         ></EditText>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="4dp"
+        android:layout_margin="10dp"
         android:text="Register"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/passwordEdit"
         android:id="@+id/registerbtn"
-        android:background="@color/purple_500"
+        android:background="@drawable/rounded_corners"
         android:textColor="@color/white"
+        android:padding="10dp"
         ></Button>
 
 </RelativeLayout>

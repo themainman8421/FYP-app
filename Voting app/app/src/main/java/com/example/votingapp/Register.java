@@ -10,6 +10,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import androidx.appcompat.app.AppCompatActivity;
+
 import com.example.votingapp.Retrofit.RetrofitClient;
 import com.example.votingapp.Retrofit.RetrofitInterface;
 

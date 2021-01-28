@@ -4,21 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".MainActivity">
+    tools:context=".MainActivity"
+    android:background="@color/teal_200">
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Create new poll"
+        android:textColor="@color/white"
         android:id="@+id/Create_new_poll"
         android:layout_centerInParent="true"
         android:padding="10dp"
+        android:background="@drawable/rounded_corners"
+        android:layout_marginBottom="10dp"
         ></Button>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Join poll"
+        android:textColor="@color/white"
         android:id="@+id/Join_poll"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/Create_new_poll"
@@ -27,16 +32,21 @@
         android:paddingRight="10dp"
         android:paddingTop="10dp"
         android:textStyle="bold"
+        android:background="@drawable/rounded_corners"
+        android:layout_marginBottom="10dp"
         ></Button>
 
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="All Polls"
+        android:textColor="@color/white"
         android:id="@+id/All_Polls"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/Join_poll"
         android:padding="10dp"
+        android:background="@drawable/rounded_corners"
+        android:layout_marginBottom="10dp"
         ></Button>
 
 </RelativeLayout>
