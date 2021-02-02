@@ -11,7 +11,6 @@ import com.example.votingapp.Retrofit.RetrofitClient;
 import com.example.votingapp.Retrofit.RetrofitInterface;
 import com.github.mikephil.charting.charts.PieChart;
 
-import org.w3c.dom.Text;
 
 import java.util.HashMap;
 

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class Home extends Activity {
 
@@ -34,5 +35,13 @@ public class Home extends Activity {
                 startActivity(intent);
             }
         });
+
+        findViewById(R.id.All_Polls).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(Home.this, "Work in progress", Toast.LENGTH_LONG).show();
+            }
+        });
+
     }
 }
