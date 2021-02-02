@@ -9,16 +9,19 @@ public class Poll {
 
     private String winner;
 
+    private String votingmethod;
+
     private Options options;
 
     private Votes votes;
 
 
-    public Poll(String title, String winner, Options options, Votes votes) {
+    public Poll(String title, String winner, Options options, Votes votes, String votingmethod) {
         this.title = title;
         this.winner = winner;
         this.options = options;
         this.votes = votes;
+        this.votingmethod = votingmethod;
     }
 
     public String getTitle() {
@@ -35,5 +38,9 @@ public class Poll {
 
     public Votes getVotes() {
         return votes;
+    }
+
+    public String getVotingmethod() {
+        return votingmethod;
     }
 }

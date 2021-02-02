@@ -19,6 +19,7 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"
         android:layout_marginBottom="50dp"
+        android:textColor="@color/white"
         ></Button>
 
 
@@ -167,6 +168,18 @@
                 android:paddingBottom="5dp"
                 android:textColor="@color/black"></TextView>
         </TableRow>
+
+        <TextView
+            android:id="@+id/method_used"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:background="@color/white"
+            android:paddingLeft="5dp"
+            android:paddingTop="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/black"></TextView>
 
     </TableLayout>
 

@@ -12,6 +12,8 @@ import com.example.votingapp.Retrofit.RetrofitInterface;
 import com.github.mikephil.charting.charts.PieChart;
 
 
+import org.w3c.dom.Text;
+
 import java.util.HashMap;
 
 import retrofit2.Call;
@@ -22,7 +24,7 @@ import retrofit2.Retrofit;
 public class Results extends Activity {
 
     RetrofitInterface RetrofitInterface;
-    TextView winner, option1, option2, option3, option1votes, option2votes, option3votes, candidate, votes;
+    TextView winner, option1, option2, option3, option1votes, option2votes, option3votes, candidate, votes, method_used;
     PieChart piechart;
 
 //    String[] options = {
@@ -72,6 +74,7 @@ public class Results extends Activity {
         option3votes = (TextView)findViewById(R.id.option3votes);
         candidate = (TextView)findViewById(R.id.candidate);
         votes = (TextView)findViewById(R.id.votes);
+        method_used = (TextView)findViewById(R.id.method_used);
 //        piechart = (PieChart)findViewById(R.id.barChart);
 
 //        winner.setText("i won!!!");
@@ -111,6 +114,7 @@ public class Results extends Activity {
                     option1votes.setText(polls.getVotes().getOption1votes());
                     option2votes.setText(polls.getVotes().getOption2votes());
                     option3votes.setText(polls.getVotes().getOption3votes());
+                    method_used.setText("The method used for this poll was: " + polls.getVotingmethod());
 
 
 
