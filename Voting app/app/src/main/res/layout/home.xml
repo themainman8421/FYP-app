@@ -13,10 +13,12 @@
         android:text="Create new poll"
         android:textColor="@color/white"
         android:id="@+id/Create_new_poll"
-        android:layout_centerInParent="true"
         android:padding="10dp"
         android:background="@drawable/rounded_corners"
-        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_above="@id/Join_poll"
+        android:layout_marginBottom="20dp"
         ></Button>
 
     <Button
@@ -25,15 +27,10 @@
         android:text="Join poll"
         android:textColor="@color/white"
         android:id="@+id/Join_poll"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/Create_new_poll"
-        android:paddingLeft="10dp"
-        android:paddingBottom="10dp"
-        android:paddingRight="10dp"
-        android:paddingTop="10dp"
-        android:textStyle="bold"
+        android:padding="10dp"
         android:background="@drawable/rounded_corners"
-        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
         ></Button>
 
     <Button
@@ -42,11 +39,12 @@
         android:text="All Polls"
         android:textColor="@color/white"
         android:id="@+id/All_Polls"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/Join_poll"
         android:padding="10dp"
         android:background="@drawable/rounded_corners"
-        android:layout_marginBottom="10dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_below="@id/Join_poll"
+        android:layout_marginTop="20dp"
         ></Button>
 
 </RelativeLayout>
