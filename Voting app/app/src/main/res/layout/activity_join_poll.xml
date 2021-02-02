@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/teal_200">
+    android:background="@color/gray">
 
     <Button
         android:id="@+id/back"
@@ -14,7 +14,10 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:onClick="switchScreen"
-        android:text="Back"></Button>
+        android:text="Back"
+        android:background="@drawable/rounded_corners"
+        android:textColor="@color/white"
+        ></Button>
 
     <EditText
         android:id="@+id/pollCodeEditText"
@@ -24,8 +27,16 @@
         android:layout_marginBottom="8dp"
         android:layout_centerHorizontal="true"
         android:inputType="number"
+        android:textAlignment="center"
         android:layout_below="@+id/back"
-        android:hint="Enter poll code"></EditText>
+        android:hint="Enter poll code"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"
+        ></EditText>
 
     <Button
         android:layout_width="wrap_content"
@@ -34,6 +45,9 @@
         android:text="Submit"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/pollCodeEditText"
-        android:id="@+id/submitbtn"></Button>
+        android:id="@+id/submitbtn"
+        android:background="@drawable/rounded_corners"
+        android:textColor="@color/white"
+        ></Button>
 
 </RelativeLayout>

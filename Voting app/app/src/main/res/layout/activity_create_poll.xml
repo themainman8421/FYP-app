@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/teal_200">
+    android:background="@color/gray">
 
     <Button
         android:id="@+id/back"
@@ -12,7 +12,10 @@
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
         android:onClick="switchScreen"
-        android:text="Back"></Button>
+        android:text="Back"
+        android:background="@drawable/rounded_corners"
+        android:textColor="@color/white"
+        ></Button>
 
     <TextView
         android:id="@+id/votingtitletextview"
@@ -22,7 +25,13 @@
         android:layout_marginTop="10dp"
         android:text="Poll Title"
         android:layout_below="@id/back"
-        android:textSize="20dp" ></TextView>
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"></TextView>
 
     <EditText
         android:id="@+id/title"
@@ -33,7 +42,13 @@
         android:layout_below="@id/votingtitletextview"
         android:ems="10"
         android:hint="Put the title for your poll here"
-        android:inputType="text"></EditText>
+        android:inputType="text"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"></EditText>
 
     <TextView
         android:id="@+id/votingmethodtextView"
@@ -43,7 +58,13 @@
         android:layout_marginTop="10dp"
         android:layout_below="@id/title"
         android:text="Which voting method would you like to use?"
-        android:textSize="20dp" ></TextView>
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"></TextView>
 
     <RadioGroup
         android:id="@+id/radioGroup"
@@ -51,7 +72,13 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
         android:layout_below="@id/votingmethodtextView"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp">
 
         <RadioButton
             android:id="@+id/radioButton"
@@ -89,7 +116,13 @@
         android:layout_marginTop="10dp"
         android:layout_below="@id/radioGroup"
         android:text="Voting options"
-        android:textSize="20dp" ></TextView>
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"></TextView>
 
     <EditText
         android:id="@+id/option1"
@@ -100,7 +133,13 @@
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:inputType="text"
-        android:hint="First option" ></EditText>
+        android:hint="First option"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"></EditText>
 
     <EditText
         android:id="@+id/option2"
@@ -111,7 +150,13 @@
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:inputType="text"
-        android:hint="Second option" ></EditText>
+        android:hint="Second option"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"></EditText>
 
     <EditText
         android:id="@+id/option3"
@@ -122,7 +167,13 @@
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:inputType="text"
-        android:hint="Third option" ></EditText>
+        android:hint="Third option"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"></EditText>
 
     <TextView
         android:id="@+id/pollcodeView"
@@ -132,7 +183,13 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:text="Code to join the poll"
-        android:textSize="20dp" ></TextView>
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"></TextView>
 
     <EditText
         android:id="@+id/pollcodeedittext"
@@ -143,7 +200,13 @@
         android:layout_centerHorizontal="true"
         android:ems="10"
         android:inputType="number"
-        android:hint="poll code" ></EditText>
+        android:hint="poll code"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"></EditText>
 
     <Button
         android:id="@+id/submitbtn"
@@ -152,7 +215,10 @@
         android:layout_below="@id/pollcodeedittext"
         android:layout_marginTop="10dp"
         android:layout_centerHorizontal="true"
-        android:text="Submit"></Button>
+        android:text="Submit"
+        android:background="@drawable/rounded_corners"
+        android:textColor="@color/white"
+        ></Button>
 
 
 </RelativeLayout>

@@ -5,120 +5,171 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity"
-    android:background="@color/teal_200"
+    android:background="@color/gray"
     >
 
 
-<!--    winner-->
-    <TextView
+    <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/winner"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="100dp"
-        android:textColor="@color/black"
-        android:background="@color/white"
-        android:paddingTop="5dp"
-        android:paddingRight="5dp"
-        android:paddingLeft="5dp"
-        android:paddingBottom="5dp"
-        ></TextView>
-
-<!--    option 1-->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/option1"
-        android:layout_below="@+id/winner"
+        android:text="Back"
+        android:id="@+id/back"
+        android:onClick="FinishScreen"
+        android:background="@drawable/rounded_corners"
         android:layout_marginTop="20dp"
-        android:layout_marginLeft="175dp"
-        android:textColor="@color/black"
-        android:background="@color/white"
-        android:paddingTop="5dp"
-        android:paddingRight="5dp"
-        android:paddingLeft="5dp"
-        android:paddingBottom="5dp"
-        ></TextView>
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="50dp"
+        ></Button>
 
-    <TextView
-        android:layout_width="wrap_content"
+
+    <TableLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/option1votes"
-        android:layout_below="@+id/winner"
-        android:layout_marginTop="20dp"
-        android:layout_toRightOf="@id/option1"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
-        android:textColor="@color/black"
-        android:background="@color/white"
-        android:paddingTop="5dp"
-        android:paddingRight="5dp"
-        android:paddingLeft="5dp"
-        android:paddingBottom="5dp"
-        ></TextView>
+        android:layout_below="@id/back">
 
-<!--    option 2-->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/option2"
-        android:layout_below="@+id/option1"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="175dp"
-        android:textColor="@color/black"
-        android:background="@color/white"
-        android:paddingTop="5dp"
-        android:paddingRight="5dp"
-        android:paddingLeft="5dp"
-        android:paddingBottom="5dp"
-        ></TextView>
+        <TextView
+            android:id="@+id/winner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:background="@color/white"
+            android:paddingLeft="5dp"
+            android:paddingTop="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/black"></TextView>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/option2votes"
-        android:layout_below="@+id/option1votes"
-        android:layout_marginTop="20dp"
-        android:layout_toRightOf="@id/option2"
-        android:layout_marginLeft="20dp"
-        android:textColor="@color/black"
-        android:background="@color/white"
-        android:paddingTop="5dp"
-        android:paddingRight="5dp"
-        android:paddingLeft="5dp"
-        android:paddingBottom="5dp"
-        ></TextView>
+        <TableRow>
+            <TextView
+                android:id="@+id/candidate"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textStyle="italic"
+                android:textSize="20dp"
+                android:background="@color/white"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/black"></TextView>
 
-<!--    option 3-->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/option3"
-        android:layout_below="@+id/option2"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="175dp"
-        android:textColor="@color/black"
-        android:background="@color/white"
-        android:paddingTop="5dp"
-        android:paddingRight="5dp"
-        android:paddingLeft="5dp"
-        android:paddingBottom="5dp"
-        ></TextView>
+            <TextView
+                android:id="@+id/votes"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textStyle="italic"
+                android:textSize="20dp"
+                android:background="@color/white"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/black"></TextView>
+        </TableRow>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/option3votes"
-        android:layout_below="@+id/option2"
-        android:layout_marginTop="20dp"
-        android:layout_toRightOf="@id/option3"
-        android:layout_marginLeft="20dp"
-        android:textColor="@color/black"
-        android:background="@color/white"
-        android:paddingTop="5dp"
-        android:paddingRight="5dp"
-        android:paddingLeft="5dp"
-        android:paddingBottom="5dp"
-        ></TextView>
+        <TableRow>
+
+            <TextView
+                android:id="@+id/option1"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="15dp"
+                android:background="@color/white"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+
+                android:textColor="@color/black"></TextView>
+
+            <TextView
+                android:id="@+id/option1votes"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="15dp"
+                android:background="@color/white"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/black"></TextView>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/option2"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="15dp"
+                android:background="@color/white"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/black"></TextView>
+
+            <TextView
+                android:id="@+id/option2votes"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="15dp"
+                android:background="@color/white"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/black"></TextView>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/option3"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="15dp"
+                android:background="@color/white"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/black"></TextView>
+
+            <TextView
+                android:id="@+id/option3votes"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="15dp"
+                android:background="@color/white"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/black"></TextView>
+        </TableRow>
+
+    </TableLayout>
+
 
 
 

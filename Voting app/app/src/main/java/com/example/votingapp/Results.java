@@ -1,24 +1,19 @@
 package com.example.votingapp;
 
 import android.app.Activity;
-import android.app.ListActivity;
-import android.content.Context;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.votingapp.Retrofit.RetrofitClient;
 import com.example.votingapp.Retrofit.RetrofitInterface;
+import com.github.mikephil.charting.charts.PieChart;
 
 import org.w3c.dom.Text;
 
 import java.util.HashMap;
-import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,7 +23,8 @@ import retrofit2.Retrofit;
 public class Results extends Activity {
 
     RetrofitInterface RetrofitInterface;
-    TextView winner, option1, option2, option3, option1votes, option2votes, option3votes;
+    TextView winner, option1, option2, option3, option1votes, option2votes, option3votes, candidate, votes;
+    PieChart piechart;
 
 //    String[] options = {
 //            "one", "two", "three"
@@ -43,15 +39,15 @@ public class Results extends Activity {
 
 //    public class MyCustomAdapter extends ArrayAdapter<String>{
 //
-//        public MyCustomAdapter(Context context, int textViewResourceId, String[] objects){
-//            super(context, textViewResourceId, objects);
+//        public MyCustomAdapter(Context context, int textViewResourceId, String[] options, String[] votes){
+//            super(context, textViewResourceId, options, votes);
 //        }
 //
 //        public View getView(int position, View convertView, ViewGroup parent){
 //            LayoutInflater inflater = getLayoutInflater();
 //            View row = inflater.inflate(R.layout.results_row, parent, false);
 //
-//            TextView label = (TextView)row.findViewById(R.id.option);
+//            TextView label = (TextView)row.findViewById(R.id.op);
 //            label.setText(options[position]);
 //
 //            TextView votes = (TextView)row.findViewById(R.id.votes);
@@ -66,6 +62,7 @@ public class Results extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.results);
+//        setListAdapter(new MyCustomAdapter(Results.this, R.layout.results_row, options));
 
         winner = (TextView)findViewById(R.id.winner);
         option1 = (TextView)findViewById(R.id.option1);
@@ -74,6 +71,9 @@ public class Results extends Activity {
         option1votes = (TextView)findViewById(R.id.option1votes);
         option2votes = (TextView)findViewById(R.id.option2votes);
         option3votes = (TextView)findViewById(R.id.option3votes);
+        candidate = (TextView)findViewById(R.id.candidate);
+        votes = (TextView)findViewById(R.id.votes);
+//        piechart = (PieChart)findViewById(R.id.barChart);
 
 //        winner.setText("i won!!!");
 //        option1.setText("hgfvd");
@@ -82,6 +82,8 @@ public class Results extends Activity {
 //        option1votes.setText("gfdashjmnhg");
 //        option2votes.setText("mkloiytfgb");
 //        option3votes.setText("nbvcsaertyui");
+        candidate.setText("Candidate");
+        votes.setText("Number of Votes");
 
         String code = getIntent().getStringExtra("code");
 //        String code = "623";
@@ -111,6 +113,8 @@ public class Results extends Activity {
                     option2votes.setText(polls.getVotes().getOption2votes());
                     option3votes.setText(polls.getVotes().getOption3votes());
 
+
+
                 }
             }
 
@@ -122,5 +126,10 @@ public class Results extends Activity {
         });
 
 
+    }
+
+    public void FinishScreen(View v)
+    {
+        finish();
     }
 }
