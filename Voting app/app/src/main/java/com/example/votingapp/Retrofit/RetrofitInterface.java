@@ -23,6 +23,9 @@ public interface RetrofitInterface {
     @POST("/poll/newPoll")
     Call<Void> executenewPoll(@Body HashMap<String, String> map);
 
+    @POST("/poll/createAlternativeVotePoll")
+    Call<Void> testPoll(@Body HashMap<String, String> map);
+
     @POST("/poll/pollCode")
     Call<Void> executepollCode(@Body HashMap<String, String> map);
 

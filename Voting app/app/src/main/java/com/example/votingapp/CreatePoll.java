@@ -58,6 +58,7 @@ public class CreatePoll extends Activity {
                 View radioButton = radioGroup.findViewById(radioButtonID);
                 int idx = radioGroup.indexOfChild(radioButton);
 
+
                 RadioButton r = (RadioButton) radioGroup.getChildAt(idx);
                 String selectedtext = r.getText().toString();
 
@@ -68,18 +69,56 @@ public class CreatePoll extends Activity {
                 map.put("option1", option1.getText().toString());
                 map.put("option2", option2.getText().toString());
                 map.put("option3", option3.getText().toString());
-                map.put("code", pollcodeedittext.getText().toString());
+                map.put("pollcode", pollcodeedittext.getText().toString());
+//                map.put("code", pollcodeedittext.getText().toString());
                 map.put("winner", "there current is no winner");
                 map.put("votingmethod", selectedtext);
 
-                Call<Void> call = RetrofitInterface.executenewPoll(map);
 
-                call.enqueue(new Callback<Void>() {
+                Call<Void> call = RetrofitInterface.executepollCode(map);
+
+                call.enqueue((new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-
                         if(response.code() == 200){
-                            Toast.makeText(CreatePoll.this, "Poll created", Toast.LENGTH_LONG).show();
+                            pollcodeedittext.setError("Poll code already in use");
+                        }
+                        else{
+
+                            if(0 == idx || 1 == idx){
+                                Call<Void> secondCall = RetrofitInterface.executenewPoll(map);
+
+                                secondCall.enqueue(new Callback<Void>() {
+                                    @Override
+                                    public void onResponse(Call<Void> call, Response<Void> response) {
+                                        if(response.code() == 200){
+                                            Toast.makeText(CreatePoll.this, "Poll created", Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<Void> call, Throwable t) {
+                                        Toast.makeText(CreatePoll.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                            } else if(2 == idx){
+                                Call<Void> thirdCall = RetrofitInterface.testPoll(map);
+
+                                thirdCall.enqueue(new Callback<Void>() {
+                                    @Override
+                                    public void onResponse(Call<Void> call, Response<Void> response) {
+                                        if(response.code() == 200){
+                                            Toast.makeText(CreatePoll.this, "Poll created", Toast.LENGTH_LONG).show();
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<Void> call, Throwable t) {
+                                        Toast.makeText(CreatePoll.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                                    }
+                                });
+                            }
+
                         }
                     }
 
@@ -87,7 +126,25 @@ public class CreatePoll extends Activity {
                     public void onFailure(Call<Void> call, Throwable t) {
                         Toast.makeText(CreatePoll.this, t.getMessage(), Toast.LENGTH_LONG).show();
                     }
-                });
+                }));
+
+
+//                Call<Void> call = RetrofitInterface.executenewPoll(map);
+//
+//                call.enqueue(new Callback<Void>() {
+//                    @Override
+//                    public void onResponse(Call<Void> call, Response<Void> response) {
+//
+//                        if(response.code() == 200){
+//                            Toast.makeText(CreatePoll.this, "Poll created", Toast.LENGTH_LONG).show();
+//                        }
+//                    }
+//
+//                    @Override
+//                    public void onFailure(Call<Void> call, Throwable t) {
+//                        Toast.makeText(CreatePoll.this, t.getMessage(), Toast.LENGTH_LONG).show();
+//                    }
+//                });
 
             }
         });

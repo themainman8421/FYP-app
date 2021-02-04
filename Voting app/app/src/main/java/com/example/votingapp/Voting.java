@@ -64,6 +64,8 @@ public class Voting extends Activity {
                     List<Poll> polls = response.body();
 
                     for(Poll poll : polls){
+
+
                         titleTextView.setText(poll.getTitle());
                         option1.setText(poll.getOptions().getOption1());
                         option2.setText(poll.getOptions().getOption2());
