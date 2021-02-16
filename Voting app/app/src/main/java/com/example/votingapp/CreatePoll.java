@@ -102,7 +102,7 @@ public class CreatePoll extends Activity {
                                     }
                                 });
                             } else if(2 == idx){
-                                Call<Void> thirdCall = RetrofitInterface.testPoll(map);
+                                Call<Void> thirdCall = RetrofitInterface.createAlternativeVotePoll(map);
 
                                 thirdCall.enqueue(new Callback<Void>() {
                                     @Override

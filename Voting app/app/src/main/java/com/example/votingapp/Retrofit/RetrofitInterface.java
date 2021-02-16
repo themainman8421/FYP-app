@@ -20,17 +20,19 @@ public interface RetrofitInterface {
     @POST("/users/Register")
     Call<Void> executeSignup(@Body HashMap<String, String> map);
 
-    @POST("/poll/newPoll")
+    @POST("/poll/createPluralityAndMajorityPoll")
     Call<Void> executenewPoll(@Body HashMap<String, String> map);
 
     @POST("/poll/createAlternativeVotePoll")
-    Call<Void> testPoll(@Body HashMap<String, String> map);
+    Call<Void> createAlternativeVotePoll(@Body HashMap<String, String> map);
 
     @POST("/poll/pollCode")
     Call<Void> executepollCode(@Body HashMap<String, String> map);
 
+//    @GET("/poll/getPoll")
+//    Call<List<Poll>> getPoll(@QueryMap HashMap<String, String> map);
     @GET("/poll/getPoll")
-    Call<List<Poll>> getPoll(@QueryMap HashMap<String, String> map);
+    Call<Poll> getPoll(@QueryMap HashMap<String, String> map);
 
     @POST("/poll/increaseVote")
     Call<Void> increaseVote(@QueryMap HashMap<String, String> map);

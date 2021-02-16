@@ -30,6 +30,7 @@ public class Voting extends Activity {
     TextView titleTextView;
     RadioGroup radioGroup;
     Button submitbtn;
+    String votingMethod;
 
     Options options;
 
@@ -53,30 +54,56 @@ public class Voting extends Activity {
         HashMap<String, String> map = new HashMap<>();
         map.put("code", code);
 
-        Call<List<Poll>> call = RetrofitInterface.getPoll(map);
+//        Call<List<Poll>> call = RetrofitInterface.getPoll(map);
+//
+//        call.enqueue(new Callback<List<Poll>>() {
+//            @Override
+//            public void onResponse(Call<List<Poll>> call, Response<List<Poll>> response) {
+//
+//
+//                if (response.code() == 200 ){
+//
+//                    List<Poll> polls = response.body();
+//
+//
+//                    for(Poll poll : polls){
+//
+//
+//                        titleTextView.setText(poll.getTitle());
+//                        option1.setText(poll.getOptions().getOption1());
+//                        option2.setText(poll.getOptions().getOption2());
+//                        option3.setText(poll.getOptions().getOption3());
+//                        votingMethod = poll.getVotingmethod();
+//                    }
+//                }
+//
+//            }
+//
+//            @Override
+//            public void onFailure(Call<List<Poll>> call, Throwable t) {
+//                Toast.makeText(Voting.this, t.getMessage(), Toast.LENGTH_LONG).show();
+//            }
+//        });
 
-        call.enqueue(new Callback<List<Poll>>() {
+        Call<Poll> call = RetrofitInterface.getPoll(map);
+
+        call.enqueue(new Callback<Poll>() {
             @Override
-            public void onResponse(Call<List<Poll>> call, Response<List<Poll>> response) {
+            public void onResponse(Call<Poll> call, Response<Poll> response) {
+                if(response.code() == 200){
 
-                if (response.code() == 200 ){
+                    Poll poll = response.body();
 
-                    List<Poll> polls = response.body();
-
-                    for(Poll poll : polls){
-
-
-                        titleTextView.setText(poll.getTitle());
-                        option1.setText(poll.getOptions().getOption1());
-                        option2.setText(poll.getOptions().getOption2());
-                        option3.setText(poll.getOptions().getOption3());
-                    }
+                    titleTextView.setText(poll.getTitle());
+                    option1.setText(poll.getOptions().getOption1());
+                    option2.setText(poll.getOptions().getOption2());
+                    option3.setText(poll.getOptions().getOption3());
+                    votingMethod = poll.getVotingmethod();
                 }
-
             }
 
             @Override
-            public void onFailure(Call<List<Poll>> call, Throwable t) {
+            public void onFailure(Call<Poll> call, Throwable t) {
                 Toast.makeText(Voting.this, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
