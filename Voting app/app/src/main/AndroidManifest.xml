@@ -2,10 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.votingapp">
 
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
-
-    <uses-feature android:name="android.hardware.type.watch" />
-
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
@@ -41,7 +37,8 @@
         <activity android:name=".CreatePoll" ></activity>
         <activity android:name=".JoinPoll" ></activity>
         <activity android:name=".Voting" ></activity>
-        <activity android:name=".Results"></activity>
+        <activity android:name=".Results" ></activity>
+        <activity android:name=".AlternativeVoteVoting"></activity>
     </application>
 
 </manifest>

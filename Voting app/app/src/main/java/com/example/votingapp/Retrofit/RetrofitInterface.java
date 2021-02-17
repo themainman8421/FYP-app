@@ -10,6 +10,7 @@ import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.PUT;
 import retrofit2.http.QueryMap;
 
 public interface RetrofitInterface {
@@ -36,6 +37,9 @@ public interface RetrofitInterface {
 
     @POST("/poll/increaseVote")
     Call<Void> increaseVote(@QueryMap HashMap<String, String> map);
+
+    @PUT("/poll/AVInsert")
+    Call<Void> increaseAVVote(@QueryMap HashMap<String, String> map);
 
     @GET("/results/")
     Call<Poll> getResults(@QueryMap HashMap<String, String> map);

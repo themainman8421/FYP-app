@@ -54,37 +54,6 @@ public class Voting extends Activity {
         HashMap<String, String> map = new HashMap<>();
         map.put("code", code);
 
-//        Call<List<Poll>> call = RetrofitInterface.getPoll(map);
-//
-//        call.enqueue(new Callback<List<Poll>>() {
-//            @Override
-//            public void onResponse(Call<List<Poll>> call, Response<List<Poll>> response) {
-//
-//
-//                if (response.code() == 200 ){
-//
-//                    List<Poll> polls = response.body();
-//
-//
-//                    for(Poll poll : polls){
-//
-//
-//                        titleTextView.setText(poll.getTitle());
-//                        option1.setText(poll.getOptions().getOption1());
-//                        option2.setText(poll.getOptions().getOption2());
-//                        option3.setText(poll.getOptions().getOption3());
-//                        votingMethod = poll.getVotingmethod();
-//                    }
-//                }
-//
-//            }
-//
-//            @Override
-//            public void onFailure(Call<List<Poll>> call, Throwable t) {
-//                Toast.makeText(Voting.this, t.getMessage(), Toast.LENGTH_LONG).show();
-//            }
-//        });
-
         Call<Poll> call = RetrofitInterface.getPoll(map);
 
         call.enqueue(new Callback<Poll>() {

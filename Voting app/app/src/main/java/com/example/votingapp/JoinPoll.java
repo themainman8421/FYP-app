@@ -28,8 +28,6 @@ public class JoinPoll extends Activity {
 
     EditText pollCodeEditText;
     Button submitbtn;
-//    String votingMethod = "Majority Vote";
-//    String you = "Majority Vote";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,54 +54,29 @@ public class JoinPoll extends Activity {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         if(response.code() == 200){
-//                            Toast.makeText(JoinPoll.this, "Fetching poll data", Toast.LENGTH_LONG).show();
 //
-                            Intent intent = new Intent(JoinPoll.this, Voting.class);
-                            intent.putExtra("code", pollCodeEditText.getText().toString());
-                            startActivity(intent);
-//                            Call<List<Poll>> call2 = RetrofitInterface.getPoll(map);
-//
-//                            call2.enqueue(new Callback<List<Poll>>() {
-//                                @Override
-//                                public void onResponse(Call<List<Poll>> call, Response<List<Poll>> response) {
-//                                    if (response.code() == 200 ) {
-////                                        Log.d("TAG", "onResponse: ");
-//                                        List<Poll> polls = response.body();
-//
-//                                        for(Poll poll : polls){
-////                                            Log.d("TAG", "onResponse: ");
-//                                            String votingMethod = poll.getVotingmethod();
-//                                            Log.d("TAG", votingMethod);
-//
-//                                            if (votingMethod == "Majority Vote"){
-//                                                Log.d("TAG", "onResponse: ");
-//                                                Intent intent = new Intent(JoinPoll.this, Voting.class);
-//                                                intent.putExtra("code", pollCodeEditText.getText().toString());
-//                                                startActivity(intent);
-//                                            }
-//
-//
-//                                        }
-//                                        Log.d("TAG", votingMethod);
-//                                        if (votingMethod == "Majority Vote"){
-//                                            Log.d("TAG", "onResponse: ");
-//                                            Intent intent = new Intent(JoinPoll.this, Voting.class);
-//                                            intent.putExtra("code", pollCodeEditText.getText().toString());
-//                                            startActivity(intent);
-//                                        }else if(votingMethod == "Alternative Vote"){
-//                                            Intent intent = new Intent(JoinPoll.this, Voting.class);
-//                                            intent.putExtra("code", pollCodeEditText.getText().toString());
-//                                            startActivity(intent);
-//                                            Log.d("TAG", "onResponse: ");
-//                                        }
-//                                    }
-//                                }
-//
-//                                @Override
-//                                public void onFailure(Call<List<Poll>> call, Throwable t) {
-//                                    Toast.makeText(JoinPoll.this, t.getMessage(), Toast.LENGTH_LONG).show();
-//                                }
-//                            });
+                            Call<Poll> call2 = RetrofitInterface.getPoll(map);
+
+                            call2.enqueue(new Callback<Poll>() {
+                                @Override
+                                public void onResponse(Call<Poll> call, Response<Poll> response) {
+                                    if(response.code() == 200){
+                                        Intent intent = new Intent(JoinPoll.this, Voting.class);
+                                        intent.putExtra("code", pollCodeEditText.getText().toString());
+                                        startActivity(intent);
+
+                                    }else if(response.code() == 201){
+                                        Intent intent = new Intent(JoinPoll.this, AlternativeVoteVoting.class);
+                                        intent.putExtra("code", pollCodeEditText.getText().toString());
+                                        startActivity(intent);
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<Poll> call, Throwable t) {
+                                    Toast.makeText(JoinPoll.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                            });
 
                         }else if(response.code() == 400){
                             Toast.makeText(JoinPoll.this, "Poll does not exist", Toast.LENGTH_LONG).show();

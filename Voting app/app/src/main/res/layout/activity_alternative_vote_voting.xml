@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/gray">
+
+    <Button
+        android:id="@+id/back"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="20dp"
+        android:onClick="switchScreen"
+        android:text="Back"
+        android:background="@drawable/rounded_corners"
+        android:textColor="@color/white"
+        ></Button>
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginLeft="20dp"
+        android:layout_below="@id/back">
+
+        <TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:textSize="25dp"
+            android:background="@color/white"
+            android:paddingLeft="5dp"
+            android:paddingTop="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/black"></TextView>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/option1"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textStyle="italic"
+                android:textSize="20dp"
+                android:background="@color/white"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/black"></TextView>
+
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:layout_height="match_parent"
+                android:textAlignment="center"
+                android:textStyle="italic"
+                android:textSize="20dp"
+                android:background="@color/white"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/black"
+                ></Spinner>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/option2"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textStyle="italic"
+                android:textSize="20dp"
+                android:background="@color/white"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/black"></TextView>
+
+            <Spinner
+                android:id="@+id/spinner2"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:layout_height="match_parent"
+                android:textAlignment="center"
+                android:textStyle="italic"
+                android:textSize="20dp"
+                android:background="@color/white"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/black"
+                ></Spinner>
+        </TableRow>
+        <TableRow>
+            <TextView
+                android:id="@+id/option3"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textStyle="italic"
+                android:textSize="20dp"
+                android:background="@color/white"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/black"></TextView>
+
+            <Spinner
+                android:id="@+id/spinner3"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:layout_height="match_parent"
+                android:textAlignment="center"
+                android:textStyle="italic"
+                android:textSize="20dp"
+                android:background="@color/white"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/black"
+                ></Spinner>
+        </TableRow>
+
+    </TableLayout>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:text="Submit"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/submitbtn"
+        android:background="@drawable/rounded_corners"
+        android:textColor="@color/white"
+        android:padding="10dp"
+        ></Button>
+
+
+
+
+</LinearLayout>
