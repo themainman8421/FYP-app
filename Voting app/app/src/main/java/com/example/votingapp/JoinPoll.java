@@ -46,7 +46,7 @@ public class JoinPoll extends Activity {
 
                 HashMap<String, String> map = new HashMap<>();
 
-                map.put("code", pollCodeEditText.getText().toString());
+                map.put("pollcode", pollCodeEditText.getText().toString());
 
                 Call<Void> call = RetrofitInterface.executepollCode(map);
 

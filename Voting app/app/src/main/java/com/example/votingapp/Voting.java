@@ -52,7 +52,7 @@ public class Voting extends Activity {
         radioGroup = findViewById(R.id.radioGroup);
 
         HashMap<String, String> map = new HashMap<>();
-        map.put("code", code);
+        map.put("pollcode", code);
 
         Call<Poll> call = RetrofitInterface.getPoll(map);
 

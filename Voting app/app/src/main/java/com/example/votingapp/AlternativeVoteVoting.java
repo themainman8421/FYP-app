@@ -76,7 +76,7 @@ public class AlternativeVoteVoting extends Activity {
         };
 
         HashMap<String, String> map = new HashMap<>();
-        map.put("code", code);
+        map.put("pollcode", code);
         Log.d("TAG", "onCreate() returned: " +  map);
 
 
