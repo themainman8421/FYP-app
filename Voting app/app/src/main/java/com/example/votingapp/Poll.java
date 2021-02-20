@@ -15,13 +15,19 @@ public class Poll {
 
     private Votes votes;
 
+    private FirstRound firstRound;
 
-    public Poll(String title, String winner, Options options, Votes votes, String votingmethod) {
+    private SecondRound secondRound;
+
+
+    public Poll(String title, String winner, String votingmethod, Options options, Votes votes, FirstRound firstRound, SecondRound secondRound) {
         this.title = title;
         this.winner = winner;
+        this.votingmethod = votingmethod;
         this.options = options;
         this.votes = votes;
-        this.votingmethod = votingmethod;
+        this.firstRound = firstRound;
+        this.secondRound = secondRound;
     }
 
     public String getTitle() {
@@ -32,6 +38,10 @@ public class Poll {
         return winner;
     }
 
+    public String getVotingmethod() {
+        return votingmethod;
+    }
+
     public Options getOptions() {
         return options;
     }
@@ -40,7 +50,11 @@ public class Poll {
         return votes;
     }
 
-    public String getVotingmethod() {
-        return votingmethod;
+    public FirstRound getFirstRound() {
+        return firstRound;
+    }
+
+    public SecondRound getSecondRound() {
+        return secondRound;
     }
 }

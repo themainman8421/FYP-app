@@ -1,6 +1,7 @@
 package com.example.votingapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -44,6 +45,7 @@ public class AlternativeVoteVoting extends Activity {
     String firstPreference;
     String secondPreference;
     String thirdPreference;
+    String nochoice;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -125,6 +127,9 @@ public class AlternativeVoteVoting extends Activity {
                 String selectedItemText = (String) parent.getItemAtPosition(position);
                 // If user change the default selection
                 // First item is disable and it is used for hint
+//                if(position == 0){
+//                    nochoice = selectedItemText;
+//                }
                 if(position > 0){
 
                     option1choice = selectedItemText;
@@ -142,6 +147,7 @@ public class AlternativeVoteVoting extends Activity {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItemText = (String) parent.getItemAtPosition(position);
+
 
                 if(position > 0){
                     option2choice = selectedItemText;
@@ -207,6 +213,9 @@ public class AlternativeVoteVoting extends Activity {
             @Override
             public void onClick(View v) {
 
+                if (option1choice.equals(nochoice) || option2choice.equals(nochoice) || option3choice.equals(nochoice)){
+                    Toast.makeText(AlternativeVoteVoting.this, "All candidates must have a preferences", Toast.LENGTH_LONG).show();
+                }
                 if(option1choice.equals(option2choice) || option1choice.equals(option3choice) || option2choice.equals(option3choice)){
                     Toast.makeText(AlternativeVoteVoting.this, "All candidates must have different preferences", Toast.LENGTH_LONG).show();
                 }else{
@@ -248,6 +257,10 @@ public class AlternativeVoteVoting extends Activity {
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             if(response.code() == 200){
                                 Toast.makeText(AlternativeVoteVoting.this, "Success!", Toast.LENGTH_LONG).show();
+                                Intent intent = new Intent(AlternativeVoteVoting.this, AlternativeVoteResult.class);
+                                intent.putExtra("code", code);
+                                startActivity(intent);
+
                             }
                         }
 

@@ -36,8 +36,22 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:textAlignment="center"
-            android:textStyle="bold"
+            android:textStyle="bold|italic"
             android:textSize="25dp"
+            android:background="@color/white"
+            android:paddingLeft="5dp"
+            android:paddingTop="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/black"></TextView>
+
+        <TextView
+            android:id="@+id/firstRound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textStyle="italic"
+            android:textSize="20dp"
             android:background="@color/white"
             android:paddingLeft="5dp"
             android:paddingTop="5dp"
@@ -170,6 +184,144 @@
         </TableRow>
 
         <TextView
+            android:id="@+id/secondRound"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textStyle="italic"
+            android:textSize="20dp"
+            android:background="@color/white"
+            android:paddingLeft="5dp"
+            android:paddingTop="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/black"></TextView>
+
+        <TableRow>
+        <TextView
+            android:id="@+id/candidate2"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textStyle="italic"
+            android:textSize="20dp"
+            android:background="@color/white"
+            android:paddingLeft="5dp"
+            android:paddingTop="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/black"></TextView>
+
+        <TextView
+            android:id="@+id/votes2"
+            android:layout_width="0dp"
+            android:layout_weight=".5"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:textStyle="italic"
+            android:textSize="20dp"
+            android:background="@color/white"
+            android:paddingLeft="5dp"
+            android:paddingTop="5dp"
+            android:paddingRight="5dp"
+            android:paddingBottom="5dp"
+            android:textColor="@color/black"></TextView>
+        </TableRow>
+
+
+        <TableRow>
+            <TextView
+                android:id="@+id/option1second"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="15dp"
+                android:background="@color/white"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/black"></TextView>
+
+            <TextView
+                android:id="@+id/option1votessecond"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="15dp"
+                android:background="@color/white"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/black"></TextView>
+        </TableRow>
+
+        <TableRow>
+            <TextView
+                android:id="@+id/option2second"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="15dp"
+                android:background="@color/white"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/black"></TextView>
+
+            <TextView
+                android:id="@+id/option2votessecond"
+                android:layout_width="0dp"
+                android:layout_weight=".5"
+                android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:textSize="15dp"
+                android:background="@color/white"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:textColor="@color/black"></TextView>
+        </TableRow>
+
+        <TableRow>
+
+            <TextView
+                android:id="@+id/option3second"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:background="@color/white"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="15dp"></TextView>
+
+            <TextView
+                android:id="@+id/option3votessecond"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight=".5"
+                android:background="@color/white"
+                android:paddingLeft="5dp"
+                android:paddingTop="5dp"
+                android:paddingRight="5dp"
+                android:paddingBottom="5dp"
+                android:textAlignment="center"
+                android:textColor="@color/black"
+                android:textSize="15dp"></TextView>
+        </TableRow>
+
+        <TextView
             android:id="@+id/method_used"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -179,7 +331,8 @@
             android:paddingTop="5dp"
             android:paddingRight="5dp"
             android:paddingBottom="5dp"
-            android:textColor="@color/black"></TextView>
+            android:textColor="@color/black"
+            android:textAlignment="center"></TextView>
 
     </TableLayout>
 

@@ -43,4 +43,7 @@ public interface RetrofitInterface {
 
     @GET("/results/")
     Call<Poll> getResults(@QueryMap HashMap<String, String> map);
+
+    @GET("/results/avResult")
+    Call<Poll> getAVResults(@QueryMap HashMap<String, String> map);
 }
