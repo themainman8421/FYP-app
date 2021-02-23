@@ -14,7 +14,7 @@
         android:layout_height="wrap_content"
         android:text="Back"
         android:id="@+id/back"
-        android:onClick="FinishScreen"
+        android:onClick="switchScreen"
         android:background="@drawable/rounded_corners"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="10dp"

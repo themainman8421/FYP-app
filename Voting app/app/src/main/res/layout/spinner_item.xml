@@ -6,4 +6,5 @@
     android:textStyle="italic"
     android:fontFamily="sans-serif-medium"
     android:textAlignment="center"
+    android:textSize="20dp"
     />

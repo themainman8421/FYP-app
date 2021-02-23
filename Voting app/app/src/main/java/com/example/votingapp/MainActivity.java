@@ -3,7 +3,9 @@ package com.example.votingapp;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -24,10 +26,12 @@ import retrofit2.Retrofit;
 public class MainActivity extends Activity {
 
     RetrofitInterface RetrofitInterface;
+    SharedPreferences sharedPreferences;
 
     EditText emailEdit, passwordEdit;
     Button loginbtn;
     ImageView voteImage;
+    String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +40,8 @@ public class MainActivity extends Activity {
 
         Retrofit retrofitClient = RetrofitClient.getInstance();
         RetrofitInterface = retrofitClient.create(RetrofitInterface.class);
+
+        sharedPreferences = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
 
         findViewById(R.id.Register).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -52,50 +58,62 @@ public class MainActivity extends Activity {
 
         voteImage.setImageResource(R.drawable.mobile_vote_image);
 
+
+
         loginbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
                 HashMap<String, String> map = new HashMap<>();
 
-                map.put("email", emailEdit.getText().toString());
+                email = emailEdit.getText().toString();
+
+                map.put("email", email);
                 map.put("password", passwordEdit.getText().toString());
 
-                Intent intent = new Intent(MainActivity.this, Home.class);
-                startActivity(intent);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
 
-//                Call<Void> call = RetrofitInterface.executeLogin(map);
-//
-//                call.enqueue(new Callback<Void>() {
-//                    @Override
-//                    public void onResponse(Call<Void> call, Response<Void> response) {
-//
-//                        if (response.code() == 200){
-//                            Toast.makeText(MainActivity.this, "You have successfully logged in", Toast.LENGTH_LONG).show();
-//
-//                            Intent intent = new Intent(MainActivity.this, Home.class);
-//                            startActivity(intent);
-//
-//                        } else if (response.code() == 404){
-//                            emailEdit.setError("Email is not registered");
-//
-//                        } else if (response.code() == 401){
-//                            passwordEdit.setError("Password is incorrect");
-//                        }
-//                    }
-//
-//                    @Override
-//                    public void onFailure(Call<Void> call, Throwable t) {
-//                        Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
-//                    }
-//                });
+                editor.putString("email", email);
+                editor.commit();
+
+//                Intent intent = new Intent(MainActivity.this, Home.class);
+//                startActivity(intent);
+
+                Call<Void> call = RetrofitInterface.executeLogin(map);
+
+                call.enqueue(new Callback<Void>() {
+                    @Override
+                    public void onResponse(Call<Void> call, Response<Void> response) {
+
+                        if (response.code() == 200){
+
+//                            User user = response.body();
+                            Toast.makeText(MainActivity.this, "You have successfully logged in", Toast.LENGTH_LONG).show();
+//                            Toast.makeText(MainActivity.this, user.getEmail(), Toast.LENGTH_LONG).show();
+
+
+
+                            Intent intent = new Intent(MainActivity.this, Home.class);
+                            startActivity(intent);
+
+                        } else if (response.code() == 404){
+                            emailEdit.setError("Email is not registered");
+
+                        } else if (response.code() == 401){
+                            passwordEdit.setError("Password is incorrect");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Void> call, Throwable t) {
+                        Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                    }
+                });
             }
         });
     }
 
 
-
-
-
-
+    public void switchScreen(View view) {
+    }
 }

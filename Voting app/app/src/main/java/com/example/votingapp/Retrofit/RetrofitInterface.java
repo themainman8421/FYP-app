@@ -1,6 +1,7 @@
 package com.example.votingapp.Retrofit;
 
 import com.example.votingapp.Poll;
+import com.example.votingapp.User;
 
 import java.util.HashMap;
 import java.util.List;
@@ -46,4 +47,8 @@ public interface RetrofitInterface {
 
     @GET("/results/avResult")
     Call<Poll> getAVResults(@QueryMap HashMap<String, String> map);
+
+    @PUT("/poll/pollsVotedOn")
+    Call<Void> addPollVotedOn(@QueryMap HashMap<String, String> map);
+
 }

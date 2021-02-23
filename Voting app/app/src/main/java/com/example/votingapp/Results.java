@@ -1,6 +1,7 @@
 package com.example.votingapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -131,8 +132,10 @@ public class Results extends Activity {
 
     }
 
-    public void FinishScreen(View v)
+    public void switchScreen(View v)
     {
+        Intent intent = new Intent(Results.this, Home.class);
+        startActivity(intent);
         finish();
     }
 }

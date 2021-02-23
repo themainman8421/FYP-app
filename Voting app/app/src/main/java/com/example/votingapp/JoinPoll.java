@@ -1,7 +1,9 @@
 package com.example.votingapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Parcelable;
 import android.util.Log;
@@ -28,14 +30,20 @@ public class JoinPoll extends Activity {
 
     EditText pollCodeEditText;
     Button submitbtn;
+    String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_join_poll);
 
+
         Retrofit retrofitClient = RetrofitClient.getInstance();
         RetrofitInterface = retrofitClient.create(RetrofitInterface.class);
+
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+
+        email = sharedPreferences.getString("email", "");
 
         pollCodeEditText = findViewById(R.id.pollCodeEditText);
         submitbtn = findViewById(R.id.submitbtn);
@@ -46,7 +54,8 @@ public class JoinPoll extends Activity {
 
                 HashMap<String, String> map = new HashMap<>();
 
-                map.put("pollcode", pollCodeEditText.getText().toString());
+                map.put("code", pollCodeEditText.getText().toString());
+                map.put("email", email);
 
                 Call<Void> call = RetrofitInterface.executepollCode(map);
 
@@ -54,7 +63,7 @@ public class JoinPoll extends Activity {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         if(response.code() == 200){
-//
+
                             Call<Poll> call2 = RetrofitInterface.getPoll(map);
 
                             call2.enqueue(new Callback<Poll>() {
@@ -78,7 +87,16 @@ public class JoinPoll extends Activity {
                                 }
                             });
 
-                        }else if(response.code() == 400){
+                        }else if(response.code() == 201){
+                            Intent intent = new Intent(JoinPoll.this, AlternativeVoteResult.class);
+                            intent.putExtra("code", pollCodeEditText.getText().toString());
+                            startActivity(intent);
+
+                        }else if(response.code() == 202){
+                            Intent intent = new Intent(JoinPoll.this, Results.class);
+                            intent.putExtra("code", pollCodeEditText.getText().toString());
+                            startActivity(intent);
+                        } else if(response.code() == 400){
                             Toast.makeText(JoinPoll.this, "Poll does not exist", Toast.LENGTH_LONG).show();
                         }
 
@@ -94,8 +112,8 @@ public class JoinPoll extends Activity {
 
     }
 
-    public void switchScreen(View v)
-    {
+
+    public  void switchScreen(View v){
         finish();
     }
 }

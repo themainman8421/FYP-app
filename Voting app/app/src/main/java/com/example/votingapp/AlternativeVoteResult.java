@@ -1,8 +1,10 @@
 package com.example.votingapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -24,6 +26,7 @@ public class AlternativeVoteResult extends Activity {
             option3votes, candidate, votes, method_used, firstRound, secondRound,
             option1second, option2second, option3second, option1votessecond,
             option2votessecond, option3votessecond, candidate2, votes2;
+    Button back;
 
     String option1text;
     String option2text;
@@ -64,6 +67,8 @@ public class AlternativeVoteResult extends Activity {
         candidate2 = (TextView)findViewById(R.id.candidate2);
         votes2 = (TextView)findViewById(R.id.votes2);
         method_used = (TextView)findViewById(R.id.method_used);
+
+        back = (Button)findViewById(R.id.back);
 
         candidate.setText("Candidate");
         votes.setText("Number of Votes");
@@ -115,5 +120,11 @@ public class AlternativeVoteResult extends Activity {
         });
 
 
+    }
+
+    public void FinishScreen(View view) {
+        Intent intent = new Intent(AlternativeVoteResult.this, Home.class);
+        startActivity(intent);
+        finish();
     }
 }

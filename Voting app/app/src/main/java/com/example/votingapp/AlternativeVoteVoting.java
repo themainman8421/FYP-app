@@ -1,7 +1,9 @@
 package com.example.votingapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
@@ -38,7 +40,7 @@ public class AlternativeVoteVoting extends Activity {
 
     RetrofitInterface RetrofitInterface;
     TextView title, option1, option2, option3;
-    Button submitbtn;
+    Button submitbtn, back;
     String option1choice;
     String option2choice;
     String option3choice;
@@ -46,6 +48,8 @@ public class AlternativeVoteVoting extends Activity {
     String secondPreference;
     String thirdPreference;
     String nochoice;
+    String email;
+    String code;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,13 +59,17 @@ public class AlternativeVoteVoting extends Activity {
         Retrofit retrofitClient = RetrofitClient.getInstance();
         RetrofitInterface = retrofitClient.create(RetrofitInterface.class);
 
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+        email = sharedPreferences.getString("email", "");
+
         title = findViewById(R.id.title);
         option1 = findViewById(R.id.option1);
         option2 = findViewById(R.id.option2);
         option3 = findViewById(R.id.option3);
         submitbtn = findViewById(R.id.submitbtn);
+        back = findViewById(R.id.back);
 
-        String code = getIntent().getStringExtra("code");
+        code = getIntent().getStringExtra("code");
         Log.d("TAG", code);
 
         // Spinner element
@@ -78,7 +86,8 @@ public class AlternativeVoteVoting extends Activity {
         };
 
         HashMap<String, String> map = new HashMap<>();
-        map.put("pollcode", code);
+        map.put("code", code);
+        map.put("email", email);
         Log.d("TAG", "onCreate() returned: " +  map);
 
 
@@ -249,6 +258,7 @@ public class AlternativeVoteVoting extends Activity {
                     map.put("firstPreference", firstPreference);
                     map.put("secondPreference", secondPreference);
                     map.put("thirdPreference", thirdPreference);
+                    map.put("email", email);
 
                     Call<Void> call = RetrofitInterface.increaseAVVote(map);
 
@@ -256,10 +266,30 @@ public class AlternativeVoteVoting extends Activity {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
                             if(response.code() == 200){
-                                Toast.makeText(AlternativeVoteVoting.this, "Success!", Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(AlternativeVoteVoting.this, AlternativeVoteResult.class);
-                                intent.putExtra("code", code);
-                                startActivity(intent);
+
+                                Call<Void> call2 = RetrofitInterface.addPollVotedOn(map);
+                                call2.enqueue(new Callback<Void>() {
+                                    @Override
+                                    public void onResponse(Call<Void> call, Response<Void> response) {
+                                        if(response.code() == 200){
+                                            Toast.makeText(AlternativeVoteVoting.this, "Success!", Toast.LENGTH_LONG).show();
+                                            Intent intent = new Intent(AlternativeVoteVoting.this, AlternativeVoteResult.class);
+                                            intent.putExtra("code", code);
+                                            startActivity(intent);
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailure(Call<Void> call, Throwable t) {
+                                        Toast.makeText(AlternativeVoteVoting.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                                    }
+                                });
+
+
+//                                Toast.makeText(AlternativeVoteVoting.this, "Success!", Toast.LENGTH_LONG).show();
+//                                Intent intent = new Intent(AlternativeVoteVoting.this, AlternativeVoteResult.class);
+//                                intent.putExtra("code", code);
+//                                startActivity(intent);
 
                             }
                         }
@@ -276,6 +306,13 @@ public class AlternativeVoteVoting extends Activity {
             }
         });
 
+    }
+
+
+    public void FinishScreen(View view) {
+        Intent intent = new Intent(AlternativeVoteVoting.this, Home.class);
+        startActivity(intent);
+        finish();
     }
 }
 

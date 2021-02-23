@@ -1,7 +1,9 @@
 package com.example.votingapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -30,9 +32,7 @@ public class Voting extends Activity {
     TextView titleTextView;
     RadioGroup radioGroup;
     Button submitbtn;
-    String votingMethod;
-
-    Options options;
+    String votingMethod, email, code;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +42,11 @@ public class Voting extends Activity {
         Retrofit retrofitClient = RetrofitClient.getInstance();
         RetrofitInterface = retrofitClient.create(RetrofitInterface.class);
 
-        String code = getIntent().getStringExtra("code");
+        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+
+        email = sharedPreferences.getString("email", "");
+
+        code = getIntent().getStringExtra("code");
 
         titleTextView = findViewById(R.id.titleTextView);
         option1 = findViewById(R.id.radioButton);
@@ -52,7 +56,8 @@ public class Voting extends Activity {
         radioGroup = findViewById(R.id.radioGroup);
 
         HashMap<String, String> map = new HashMap<>();
-        map.put("pollcode", code);
+        map.put("code", code);
+        map.put("email", email);
 
         Call<Poll> call = RetrofitInterface.getPoll(map);
 
@@ -81,8 +86,6 @@ public class Voting extends Activity {
             @Override
             public void onClick(View v) {
 
-                HashMap<String, String> map = new HashMap<>();
-                map.put("code", code);
                 int radioButtonID = radioGroup.getCheckedRadioButtonId();
                 View radioButton = radioGroup.findViewById(radioButtonID);
                 int idx = radioGroup.indexOfChild(radioButton);
@@ -102,10 +105,30 @@ public class Voting extends Activity {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
                         if (response.code() == 200){
-                            Toast.makeText(Voting.this, "Vote successfully placed", Toast.LENGTH_LONG).show();
-                            Intent intent = new Intent(Voting.this, Results.class);
-                            intent.putExtra("code", code);
-                            startActivity(intent);
+
+                            Call<Void> call2 = RetrofitInterface.addPollVotedOn(map);
+
+                            call2.enqueue(new Callback<Void>() {
+                                @Override
+                                public void onResponse(Call<Void> call, Response<Void> response) {
+                                    if(response.code() == 200){
+                                        Toast.makeText(Voting.this, "Vote successfully placed", Toast.LENGTH_LONG).show();
+                                        Intent intent = new Intent(Voting.this, Results.class);
+                                        intent.putExtra("code", code);
+                                        startActivity(intent);
+                                    }
+                                }
+
+                                @Override
+                                public void onFailure(Call<Void> call, Throwable t) {
+                                    Toast.makeText(Voting.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                                }
+                            });
+
+//                            Toast.makeText(Voting.this, "Vote successfully placed", Toast.LENGTH_LONG).show();
+//                            Intent intent = new Intent(Voting.this, Results.class);
+//                            intent.putExtra("code", code);
+//                            startActivity(intent);
                         }
                     }
 
@@ -122,6 +145,8 @@ public class Voting extends Activity {
 
     public void switchScreen(View v)
     {
+        Intent intent = new Intent(Voting.this, Home.class);
+        startActivity(intent);
         finish();
     }
 }

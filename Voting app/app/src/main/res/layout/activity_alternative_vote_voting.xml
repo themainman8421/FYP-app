@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -11,13 +11,14 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="20dp"
-        android:onClick="switchScreen"
+        android:onClick="FinishScreen"
         android:text="Back"
         android:background="@drawable/rounded_corners"
         android:textColor="@color/white"
         ></Button>
 
     <TableLayout
+        android:id="@+id/table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
@@ -140,18 +141,18 @@
     </TableLayout>
 
     <Button
+        android:id="@+id/submitbtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
-        android:text="Submit"
+        android:layout_below="@id/table"
         android:layout_centerHorizontal="true"
-        android:id="@+id/submitbtn"
-        android:background="@drawable/rounded_corners"
+        android:layout_marginTop="20dp"
+        android:text="Vote"
         android:textColor="@color/white"
-        android:padding="10dp"
+        android:background="@drawable/rounded_corners"
         ></Button>
 
 
 
 
-</LinearLayout>
+</RelativeLayout>
