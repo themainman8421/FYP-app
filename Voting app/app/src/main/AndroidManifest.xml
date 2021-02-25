@@ -42,6 +42,7 @@
         <activity android:name=".AlternativeVoteResult"></activity>
         <activity android:name=".PollingMethodsExplained"></activity>
         <activity android:name=".AllPolls"></activity>
+        <activity android:name=".MyPolls"></activity>
     </application>
 
 </manifest>

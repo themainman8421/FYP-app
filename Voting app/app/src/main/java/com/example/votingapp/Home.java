@@ -9,7 +9,7 @@ import android.widget.Toast;
 
 public class Home extends Activity {
 
-    Button Create_new_poll, Join_poll, All_Polls;
+    Button Create_new_poll, Join_poll, All_Polls, My_Polls;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -41,6 +41,14 @@ public class Home extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Home.this, AllPolls.class);
+                startActivity(intent);
+            }
+        });
+
+        findViewById(R.id.My_Polls).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home.this, MyPolls.class);
                 startActivity(intent);
             }
         });

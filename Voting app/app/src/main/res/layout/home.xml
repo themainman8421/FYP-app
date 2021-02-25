@@ -48,4 +48,18 @@
         android:layout_marginTop="20dp"
         ></Button>
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="My Polls"
+        android:textColor="@color/white"
+        android:id="@+id/My_Polls"
+        android:padding="10dp"
+        android:background="@drawable/rounded_corners"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_below="@id/All_Polls"
+        android:layout_marginTop="20dp"
+        ></Button>
+
 </RelativeLayout>
