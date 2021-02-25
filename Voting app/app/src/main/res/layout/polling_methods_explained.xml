@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/gray"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/rounded_corners"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            android:padding="5dp"
+            android:text="back"
+            android:onClick="SwitchScreen"
+            ></Button>
+
+        <TextView
+            android:id="@+id/About"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textAlignment="center"
+            android:text="About the different types of Voting Methods offered"
+            android:textSize="20dp"
+            android:textStyle="bold|italic"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/white"
+            ></TextView>
+
+        <TextView
+            android:id="@+id/PopularVoteTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="5dp"
+            android:textAlignment="center"
+            android:text="Popular Vote"
+            android:textSize="20dp"
+            android:textStyle="bold|italic"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/white"
+            ></TextView>
+
+        <TextView
+            android:id="@+id/PopularVote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:padding="10dp"
+            android:textSize="15dp"
+            android:background="@color/white"
+            android:text="The Popular Vote is one of the more simplistic voting methods due to the candidate only
+needs to receive a plurality of the vote (the most votes), not a majority (half of the votes + 1). It is not necessary for the candidate to receive
+a majority as long as they have at least one more vote than each of the other candidates, if so they
+are then declared the winner.\n
+e.g.\nBetween a vote of three people Paul, James and Alex. Paul receives 10 votes, James receives 5 votes and Alex receives 4 votes. Using the Popular vote system Paul would win as he has received the most votes
+"></TextView>
+
+        <TextView
+            android:id="@+id/MajorityVoteTitle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:padding="5dp"
+            android:textAlignment="center"
+            android:text="Majority Vote"
+            android:textSize="20dp"
+            android:textStyle="bold|italic"
+            ></TextView>
+
+        <TextView
+            android:id="@+id/MajorityVote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:background="@color/white"
+            android:padding="10dp"
+
+            android:text="A simple majority system is similar to a plurality one, instead of the candidate needing a plurality of
+the vote, they need a majority of the vote, half of the votes plus one. Once a candidate receives half
+of the votes plus one they will be declared the winner\n
+e.g.\nBetween a vote of three people Paul, James and Alex. Paul receives 10 votes, James receives 5 votes and Alex receives 4 votes. Using the Majority Vote system Paul would win as he has a majority of all votes cast (10 + 5 + 4 = 19, 19/2 = 9.5).
+"
+            android:textSize="15dp"></TextView>
+
+        <TextView
+            android:id="@+id/AlternativeVoteTitle"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:padding="5dp"
+            android:textAlignment="center"
+            android:text="Ranked Choice"
+            android:textSize="20dp"
+            android:textStyle="bold|italic"
+            ></TextView>
+
+        <TextView
+            android:id="@+id/AlternativeVote"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:padding="10dp"
+            android:textSize="15dp"
+            android:text="A Rank Choice voting method using aspects of a majority system and a single transferable vote system. Just like with a majority system in order to win you need a majority of the votes but with a catch, after the first round of voting the candidate with the least amount of votes is eliminated and their votes are transferred to the candidate who got the most second preferences. In this case lets say anyone who voted for Alex have Paul as their second preference, all of the votes Alex had get transferred to Paul bringing his total to 14 and keep James' total at 5. Paul will then win as he has more than enough for a majority.
+\n e.g.\n Between a vote of three people Paul, James and Alex. Paul receives 10 votes, James receives 5 votes and Alex receives 4 votes."
+            ></TextView>
+
+        <Button
+            android:id="@+id/submit"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/rounded_corners"
+            android:text="I Understand"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            ></Button>
+    </LinearLayout>
+
+
+
+</ScrollView>

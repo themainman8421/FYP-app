@@ -11,6 +11,8 @@ public class Poll {
 
     private String votingmethod;
 
+    private int code;
+
     private Options options;
 
     private Votes votes;
@@ -20,10 +22,11 @@ public class Poll {
     private SecondRound secondRound;
 
 
-    public Poll(String title, String winner, String votingmethod, Options options, Votes votes, FirstRound firstRound, SecondRound secondRound) {
+    public Poll(String title, String winner, String votingmethod, int code, Options options, Votes votes, FirstRound firstRound, SecondRound secondRound) {
         this.title = title;
         this.winner = winner;
         this.votingmethod = votingmethod;
+        this.code = code;
         this.options = options;
         this.votes = votes;
         this.firstRound = firstRound;
@@ -40,6 +43,10 @@ public class Poll {
 
     public String getVotingmethod() {
         return votingmethod;
+    }
+
+    public int getCode() {
+        return code;
     }
 
     public Options getOptions() {

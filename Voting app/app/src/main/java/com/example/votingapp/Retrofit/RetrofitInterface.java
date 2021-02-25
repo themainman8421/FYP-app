@@ -51,4 +51,10 @@ public interface RetrofitInterface {
     @PUT("/poll/pollsVotedOn")
     Call<Void> addPollVotedOn(@QueryMap HashMap<String, String> map);
 
+    @GET("/poll/allPolls")
+    Call<List<Poll>> getallPolls();
+
+    @GET("/poll/userPolls")
+    Call<List<Poll>> getallUserPolls(@QueryMap HashMap<String, String> map);
+
 }

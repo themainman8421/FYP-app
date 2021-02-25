@@ -16,7 +16,6 @@ public class Home extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home);
 
-        String email = getIntent().getStringExtra("email");
 
         Create_new_poll = (Button)findViewById(R.id.Create_new_poll);
         Join_poll = (Button)findViewById(R.id.Join_poll);
@@ -25,7 +24,7 @@ public class Home extends Activity {
         findViewById(R.id.Create_new_poll).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(Home.this, CreatePoll.class);
+                Intent intent = new Intent(Home.this, PollingMethodsExplained.class);
                 startActivity(intent);
             }
         });
@@ -34,7 +33,6 @@ public class Home extends Activity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Home.this, JoinPoll.class);
-                intent.putExtra("email", email);
                 startActivity(intent);
             }
         });
@@ -42,7 +40,8 @@ public class Home extends Activity {
         findViewById(R.id.All_Polls).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(Home.this, "Work in progress", Toast.LENGTH_LONG).show();
+                Intent intent = new Intent(Home.this, AllPolls.class);
+                startActivity(intent);
             }
         });
 
