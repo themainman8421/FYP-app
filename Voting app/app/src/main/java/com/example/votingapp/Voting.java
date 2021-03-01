@@ -90,53 +90,57 @@ public class Voting extends Activity {
                 View radioButton = radioGroup.findViewById(radioButtonID);
                 int idx = radioGroup.indexOfChild(radioButton);
                 Log.d("radio", "onCreate() returned: " + idx);
-                if(idx == 0){
-                    map.put("optionchosen", "option1");
-                } else if (idx == 1){
-                    map.put("optionchosen", "option2");
-                }else if (idx == 2){
-                    map.put("optionchosen", "option3");
-                }
-                Log.d("radio", "onCreate() returned: " + map);
+                if(idx == -1){
+                    Toast.makeText(Voting.this, "You must select an option", Toast.LENGTH_LONG).show();
+                }else {
+                    if (idx == 0) {
+                        map.put("optionchosen", "option1");
+                    } else if (idx == 1) {
+                        map.put("optionchosen", "option2");
+                    } else if (idx == 2) {
+                        map.put("optionchosen", "option3");
+                    }
+                    Log.d("radio", "onCreate() returned: " + map);
 
-                Call<Void> call = RetrofitInterface.increaseVote(map);
+                    Call<Void> call = RetrofitInterface.increaseVote(map);
 
-                call.enqueue(new Callback<Void>() {
-                    @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
-                        if (response.code() == 200){
+                    call.enqueue(new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            if (response.code() == 200) {
 
-                            Call<Void> call2 = RetrofitInterface.addPollVotedOn(map);
+                                Call<Void> call2 = RetrofitInterface.addPollVotedOn(map);
 
-                            call2.enqueue(new Callback<Void>() {
-                                @Override
-                                public void onResponse(Call<Void> call, Response<Void> response) {
-                                    if(response.code() == 200){
-                                        Toast.makeText(Voting.this, "Vote successfully placed", Toast.LENGTH_LONG).show();
-                                        Intent intent = new Intent(Voting.this, Results.class);
-                                        intent.putExtra("code", code);
-                                        startActivity(intent);
+                                call2.enqueue(new Callback<Void>() {
+                                    @Override
+                                    public void onResponse(Call<Void> call, Response<Void> response) {
+                                        if (response.code() == 200) {
+                                            Toast.makeText(Voting.this, "Vote successfully placed", Toast.LENGTH_LONG).show();
+                                            Intent intent = new Intent(Voting.this, Results.class);
+                                            intent.putExtra("code", code);
+                                            startActivity(intent);
+                                        }
                                     }
-                                }
 
-                                @Override
-                                public void onFailure(Call<Void> call, Throwable t) {
-                                    Toast.makeText(Voting.this, t.getMessage(), Toast.LENGTH_LONG).show();
-                                }
-                            });
+                                    @Override
+                                    public void onFailure(Call<Void> call, Throwable t) {
+                                        Toast.makeText(Voting.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                                    }
+                                });
 
 //                            Toast.makeText(Voting.this, "Vote successfully placed", Toast.LENGTH_LONG).show();
 //                            Intent intent = new Intent(Voting.this, Results.class);
 //                            intent.putExtra("code", code);
 //                            startActivity(intent);
+                            }
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
-                        Toast.makeText(Voting.this, t.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                });
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            Toast.makeText(Voting.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    });
+                }
             }
         });
 

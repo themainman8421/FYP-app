@@ -4,24 +4,29 @@ import android.content.Context;
 import android.graphics.Typeface;
 import android.text.Html;
 import android.text.Spanned;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
 
     private Context mContext;
-    private List<Poll> pollList;
+    private ArrayList<Poll> pollList;
     private OnPollListener onPollListener;
 
-    public RecyclerAdapter(Context mContext, List<Poll> pollList, OnPollListener onPollListener) {
+    public RecyclerAdapter(Context mContext, ArrayList<Poll> pollList, OnPollListener onPollListener) {
         this.mContext = mContext;
         this.pollList = pollList;
         this.onPollListener = onPollListener;
@@ -60,7 +65,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
         return pollList.size();
     }
 
-
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView title, votingmethod, code, winner;
@@ -89,4 +93,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     public interface OnPollListener{
         void onPollClick(int position);
     }
+
+
+
+
 }

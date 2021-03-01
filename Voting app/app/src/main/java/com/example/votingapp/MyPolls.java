@@ -6,9 +6,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -36,9 +39,10 @@ public class MyPolls extends Activity implements RecyclerAdapter.OnPollListener 
     RetrofitInterface RetrofitInterface;
 
     RecyclerView recyclerView;
-    List<Poll> pollList;
+    ArrayList<Poll> pollList;
     Button back;
     String email;
+    EditText search;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,6 +59,26 @@ public class MyPolls extends Activity implements RecyclerAdapter.OnPollListener 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         pollList = new ArrayList<>();
         back = (Button)findViewById(R.id.back);
+        search = (EditText)findViewById(R.id.search);
+
+        search.setSingleLine(true);
+
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
 
         HashMap<String, String> map = new HashMap<>();
         map.put("email", email);
@@ -84,7 +108,22 @@ public class MyPolls extends Activity implements RecyclerAdapter.OnPollListener 
 
     }
 
-    private void PutDataIntoRecyclerView(List<Poll> pollList) {
+    private void filter(String toString) {
+        try{
+            ArrayList<Poll> pollFilteredList = new ArrayList<Poll>();
+            for (Poll poll : pollList){
+                if(poll.getTitle().toLowerCase().contains(toString.toLowerCase())){
+                    pollFilteredList.add(poll);
+                }
+            }
+            PutDataIntoRecyclerView(pollFilteredList);
+        }catch (Exception e){
+            Toast.makeText(MyPolls.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Log.d("TAG", "error: " + e);
+        }
+    }
+
+    private void PutDataIntoRecyclerView(ArrayList<Poll> pollList) {
         RecyclerAdapter recyclerAdapter = new RecyclerAdapter(this, pollList, this);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));

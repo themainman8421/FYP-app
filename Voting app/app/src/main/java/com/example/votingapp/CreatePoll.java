@@ -1,6 +1,7 @@
 package com.example.votingapp;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -154,5 +155,7 @@ public class CreatePoll extends Activity {
     public void switchScreen(View v)
     {
         finish();
+        Intent intent = new Intent(CreatePoll.this, Home.class);
+        startActivity(intent);
     }
 }

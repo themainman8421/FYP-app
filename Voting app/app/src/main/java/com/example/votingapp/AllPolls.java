@@ -6,11 +6,18 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import androidx.appcompat.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,6 +29,7 @@ import com.example.votingapp.Retrofit.RetrofitInterface;
 
 import org.w3c.dom.Text;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -36,9 +44,11 @@ public class AllPolls extends Activity implements RecyclerAdapter.OnPollListener
     RetrofitInterface RetrofitInterface;
 
     RecyclerView recyclerView;
-    List<Poll> pollList;
+    RecyclerAdapter recyclerAdapter;
+    ArrayList<Poll> pollList;
     Button back;
     String email;
+    EditText search;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,12 +59,35 @@ public class AllPolls extends Activity implements RecyclerAdapter.OnPollListener
         RetrofitInterface = retrofitClient.create(RetrofitInterface.class);
 
         SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+//        recyclerAdapter = new RecyclerAdapter(this, pollList, this);
 
         email = sharedPreferences.getString("email", "");
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         pollList = new ArrayList<>();
         back = (Button)findViewById(R.id.back);
+        search = (EditText)findViewById(R.id.search);
+
+        search.setSingleLine(true);
+
+        search.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+//                filter(s.toString());
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                filter(s.toString());
+            }
+        });
+
+
 
         Call<List<Poll>> call = RetrofitInterface.getallPolls();
 
@@ -81,13 +114,32 @@ public class AllPolls extends Activity implements RecyclerAdapter.OnPollListener
 
     }
 
-    private void PutDataIntoRecyclerView(List<Poll> pollList) {
+    private void filter(String toString) {
+        try{
+            ArrayList<Poll> pollFilteredList = new ArrayList<Poll>();
+            for (Poll poll : pollList){
+                if(poll.getTitle().toLowerCase().contains(toString.toLowerCase())){
+                    pollFilteredList.add(poll);
+                }
+            }
+            PutDataIntoRecyclerView(pollFilteredList);
+        }catch (Exception e){
+            Toast.makeText(AllPolls.this, e.getMessage(), Toast.LENGTH_LONG).show();
+            Log.d("TAG", "error: " + e);
+        }
+
+    }
+
+
+    private void PutDataIntoRecyclerView(ArrayList<Poll> pollList) {
         RecyclerAdapter recyclerAdapter = new RecyclerAdapter(this, pollList, this);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
         recyclerView.setAdapter(recyclerAdapter);
     }
+
+
 
     public void switchScreen(View view) {
         finish();
@@ -156,4 +208,6 @@ public class AllPolls extends Activity implements RecyclerAdapter.OnPollListener
 
 
     }
+
+
 }

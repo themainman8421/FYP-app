@@ -47,9 +47,9 @@ public class AlternativeVoteVoting extends Activity {
     String firstPreference;
     String secondPreference;
     String thirdPreference;
-    String nochoice;
     String email;
     String code;
+    Spinner spinner, spinner2, spinner3;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -73,9 +73,9 @@ public class AlternativeVoteVoting extends Activity {
         Log.d("TAG", code);
 
         // Spinner element
-        final Spinner spinner = (Spinner) findViewById(R.id.spinner);
-        final Spinner spinner2 = (Spinner) findViewById(R.id.spinner2);
-        final Spinner spinner3 = (Spinner) findViewById(R.id.spinner3);
+        spinner = (Spinner) findViewById(R.id.spinner);
+        spinner2 = (Spinner) findViewById(R.id.spinner2);
+        spinner3 = (Spinner) findViewById(R.id.spinner3);
 
         // Initializing a String Array
         String[] preferences = new String[]{
@@ -84,6 +84,7 @@ public class AlternativeVoteVoting extends Activity {
                 "Second Preference",
                 "Third Preference"
         };
+
 
         HashMap<String, String> map = new HashMap<>();
         map.put("code", code);
@@ -125,6 +126,7 @@ public class AlternativeVoteVoting extends Activity {
                 return view;
             }
         };
+
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         spinner.setAdapter(spinnerArrayAdapter);
         spinner2.setAdapter(spinnerArrayAdapter);
@@ -143,6 +145,8 @@ public class AlternativeVoteVoting extends Activity {
 
                     option1choice = selectedItemText;
                     Log.d("TAG", "onItemSelected() returned: " + option1choice);
+                }else{
+                    option2choice = "null";
                 }
             }
 
@@ -161,6 +165,8 @@ public class AlternativeVoteVoting extends Activity {
                 if(position > 0){
                     option2choice = selectedItemText;
                     Log.d("TAG", "onItemSelected() returned: " + option2choice);
+                }else{
+                    option2choice = "null";
                 }
             }
 
@@ -180,6 +186,8 @@ public class AlternativeVoteVoting extends Activity {
                 if(position > 0){
                     option3choice = selectedItemText;
                     Log.d("TAG", "onItemSelected() returned: " + option3choice);
+                } else {
+                    option3choice = "null";
                 }
             }
 
@@ -221,11 +229,11 @@ public class AlternativeVoteVoting extends Activity {
         submitbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                if (option1choice.equals(nochoice) || option2choice.equals(nochoice) || option3choice.equals(nochoice)){
+                String item = "0";
+                if (spinner.getSelectedItemPosition() == 0 || spinner2.getSelectedItemPosition() == 0 || spinner3.getSelectedItemPosition() == 0){
                     Toast.makeText(AlternativeVoteVoting.this, "All candidates must have a preferences", Toast.LENGTH_LONG).show();
                 }
-                if(option1choice.equals(option2choice) || option1choice.equals(option3choice) || option2choice.equals(option3choice)){
+                else if(option1choice.equals(option2choice) || option1choice.equals(option3choice) || option2choice.equals(option3choice)){
                     Toast.makeText(AlternativeVoteVoting.this, "All candidates must have different preferences", Toast.LENGTH_LONG).show();
                 }else{
 

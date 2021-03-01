@@ -129,6 +129,7 @@ e.g.\nBetween a vote of three people Paul, James and Alex. Paul receives 10 vote
             android:layout_height="match_parent"
             android:background="@drawable/rounded_corners"
             android:text="I Understand"
+            android:textColor="@color/white"
             android:layout_marginRight="10dp"
             android:layout_marginLeft="10dp"
             ></Button>
