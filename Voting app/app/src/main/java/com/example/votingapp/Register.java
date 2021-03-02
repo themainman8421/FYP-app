@@ -59,15 +59,9 @@ public class Register extends Activity {
 
                 if(nameEdit.length() == 0){
                     nameEdit.setError("Name must be entered");
-                }
-
-                if (emailEdit.getText().toString().trim().matches(emailPattern)) {
-                    //Toast.makeText(getApplicationContext(),"valid email address",Toast.LENGTH_SHORT).show();
-                } else {
+                } else if (!emailEdit.getText().toString().trim().matches(emailPattern)) {
                     emailEdit.setError("Must provide a valid email");
-                }
-
-                if(passwordEdit.length() < 8){
+                }else if(passwordEdit.length() < 8){
                     passwordEdit.setError("Password must be at least 8 characters long");
                 }else {
 
@@ -84,7 +78,7 @@ public class Register extends Activity {
                         public void onResponse(Call<Void> call, Response<Void> response) {
 
                             if (response.code() == 200) {
-                                Toast.makeText(Register.this, "Signed up succesfully", Toast.LENGTH_LONG).show();
+                                Toast.makeText(Register.this, "Signed up successful please validate your email", Toast.LENGTH_LONG).show();
                                 Intent intent = new Intent(Register.this, MainActivity.class);
                                 startActivity(intent);
 
