@@ -97,7 +97,7 @@ public class MainActivity extends Activity {
                             startActivity(intent);
 
                         } else if (response.code() == 404){
-                            emailEdit.setError("Email is not registered");
+                            emailEdit.setError("Email is not registered or verified");
 
                         } else if (response.code() == 401){
                             passwordEdit.setError("Password is incorrect");
