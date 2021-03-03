@@ -79,7 +79,7 @@ public class Register extends Activity {
 
                             if (response.code() == 200) {
                                 Toast.makeText(Register.this, "Signed up successful please validate your email", Toast.LENGTH_LONG).show();
-                                Intent intent = new Intent(Register.this, MainActivity.class);
+                                Intent intent = new Intent(Register.this, SuccessfulRegister.class);
                                 startActivity(intent);
 
                             } else if (response.code() == 404) {

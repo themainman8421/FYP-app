@@ -43,6 +43,7 @@
         <activity android:name=".PollingMethodsExplained"></activity>
         <activity android:name=".AllPolls"></activity>
         <activity android:name=".MyPolls"></activity>
+        <activity android:name=".SuccessfulRegister"></activity>
     </application>
 
 </manifest>

@@ -51,6 +51,11 @@ public class MainActivity extends Activity {
             }
         });
 
+        if(sharedPreferences.getBoolean("Logged in", false) == true){
+            Intent intent = new Intent(MainActivity.this, Home.class);
+            startActivity(intent);
+        }
+
         emailEdit = (EditText)findViewById(R.id.emailEdit);
         passwordEdit = (EditText)findViewById(R.id.passwordEdit);
         loginbtn = (Button) findViewById(R.id.loginbtn);
@@ -91,7 +96,8 @@ public class MainActivity extends Activity {
                             Toast.makeText(MainActivity.this, "You have successfully logged in", Toast.LENGTH_LONG).show();
 //                            Toast.makeText(MainActivity.this, user.getEmail(), Toast.LENGTH_LONG).show();
 
-
+                            editor.putBoolean("Logged in", true);
+                            editor.commit();
 
                             Intent intent = new Intent(MainActivity.this, Home.class);
                             startActivity(intent);
