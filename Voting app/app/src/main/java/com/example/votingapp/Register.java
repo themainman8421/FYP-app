@@ -2,14 +2,21 @@ package com.example.votingapp;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
 import android.text.TextUtils;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.votingapp.Retrofit.RetrofitClient;
@@ -28,6 +35,7 @@ public class Register extends Activity {
 
     EditText emailEdit, passwordEdit, nameEdit;
     Button registerbtn;
+    TextView login;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -37,18 +45,29 @@ public class Register extends Activity {
         Retrofit retrofitClient = RetrofitClient.getInstance();
         RetrofitInterface = retrofitClient.create(RetrofitInterface.class);
 
-        findViewById(R.id.Login).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(Register.this, MainActivity.class);
-                startActivity(intent);
-            }
-        });
 
         nameEdit = (EditText)findViewById(R.id.nameEdit);
         emailEdit = (EditText)findViewById(R.id.emailEdit);
         passwordEdit = (EditText)findViewById(R.id.passwordEdit);
         registerbtn = (Button) findViewById(R.id.registerbtn);
+        login = (TextView) findViewById(R.id.login);
+
+        String text = ("Already have an Account? Click here to log in");
+
+        SpannableString spannableString = new SpannableString(text);
+
+        ClickableSpan clickableSpan = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                Intent intent = new Intent(Register.this, MainActivity.class);
+                startActivity(intent);
+            }
+        };
+
+        spannableString.setSpan(clickableSpan, 25, 45, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        login.setText(spannableString);
+        login.setMovementMethod(LinkMovementMethod.getInstance());
 
         String email = emailEdit.getText().toString().trim();
         String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";

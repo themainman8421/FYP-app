@@ -1,12 +1,20 @@
 package com.example.votingapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.votingapp.Retrofit.RetrofitClient;
 import com.example.votingapp.Retrofit.RetrofitInterface;
@@ -19,7 +27,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class AlternativeVoteResult extends Activity {
+public class AlternativeVoteResult extends AppCompatActivity {
 
     com.example.votingapp.Retrofit.RetrofitInterface RetrofitInterface;
     TextView winner, option1, option2, option3, option1votes, option2votes,
@@ -32,6 +40,8 @@ public class AlternativeVoteResult extends Activity {
     String option2text;
     String option3text;
 
+    SharedPreferences sharedPreferences;
+
 
 
     @Override
@@ -41,6 +51,8 @@ public class AlternativeVoteResult extends Activity {
 
         Retrofit retrofitClient = RetrofitClient.getInstance();
         RetrofitInterface = retrofitClient.create(RetrofitInterface.class);
+
+        sharedPreferences = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
 
         winner = (TextView)findViewById(R.id.winner);
         firstRound = (TextView)findViewById(R.id.firstRound);
@@ -126,5 +138,28 @@ public class AlternativeVoteResult extends Activity {
         Intent intent = new Intent(AlternativeVoteResult.this, Home.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.topbar_menu, menu);
+        this.setTitle("Ranked Choice Result");
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.LogOut:
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("email", "");
+                editor.putBoolean("Logged in", false);
+                editor.apply();
+                Intent intent = new Intent(AlternativeVoteResult.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

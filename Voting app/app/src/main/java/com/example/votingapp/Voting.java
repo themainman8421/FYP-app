@@ -6,12 +6,18 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.votingapp.Retrofit.RetrofitClient;
 import com.example.votingapp.Retrofit.RetrofitInterface;
@@ -25,9 +31,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class Voting extends Activity {
+public class Voting extends AppCompatActivity {
 
     RetrofitInterface RetrofitInterface;
+    SharedPreferences sharedPreferences;
     RadioButton option1, option2, option3;
     TextView titleTextView;
     RadioGroup radioGroup;
@@ -42,7 +49,7 @@ public class Voting extends Activity {
         Retrofit retrofitClient = RetrofitClient.getInstance();
         RetrofitInterface = retrofitClient.create(RetrofitInterface.class);
 
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+        sharedPreferences = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
 
         email = sharedPreferences.getString("email", "");
 
@@ -119,6 +126,7 @@ public class Voting extends Activity {
                                             Intent intent = new Intent(Voting.this, Results.class);
                                             intent.putExtra("code", code);
                                             startActivity(intent);
+                                            finish();
                                         }
                                     }
 
@@ -152,5 +160,28 @@ public class Voting extends Activity {
         Intent intent = new Intent(Voting.this, Home.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.topbar_menu, menu);
+        this.setTitle("Voting");
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.LogOut:
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("email", "");
+                editor.putBoolean("Logged in", false);
+                editor.apply();
+                Intent intent = new Intent(Voting.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

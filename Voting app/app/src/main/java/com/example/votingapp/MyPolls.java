@@ -9,6 +9,9 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -17,6 +20,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,10 +39,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class MyPolls extends Activity implements RecyclerAdapter.OnPollListener {
+public class MyPolls extends AppCompatActivity implements RecyclerAdapter.OnPollListener {
 
     RetrofitInterface RetrofitInterface;
-
+    SharedPreferences sharedPreferences;
     RecyclerView recyclerView;
     ArrayList<Poll> pollList;
     Button back;
@@ -52,7 +57,7 @@ public class MyPolls extends Activity implements RecyclerAdapter.OnPollListener 
         Retrofit retrofitClient = RetrofitClient.getInstance();
         RetrofitInterface = retrofitClient.create(RetrofitInterface.class);
 
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+        sharedPreferences = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
 
         email = sharedPreferences.getString("email", "");
 
@@ -172,5 +177,28 @@ public class MyPolls extends Activity implements RecyclerAdapter.OnPollListener 
         });
 
 
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.topbar_menu, menu);
+        this.setTitle("All polls I have voted on");
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.LogOut:
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("email", "");
+                editor.putBoolean("Logged in", false);
+                editor.apply();
+                Intent intent = new Intent(MyPolls.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

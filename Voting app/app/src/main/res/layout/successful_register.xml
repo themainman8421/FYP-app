@@ -3,7 +3,8 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/gray">
 
     <TextView
         android:id="@+id/success"
@@ -13,6 +14,7 @@
         android:layout_centerVertical="true"
         android:layout_marginLeft="50dp"
         android:layout_marginRight="50dp"
+        android:textColor="@color/black"
         android:text="You have Successfully registered your account.\n Please check your email for a confirmation link"
         android:textSize="20dp"
         ></TextView>

@@ -7,6 +7,9 @@ import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
@@ -18,6 +21,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.votingapp.Retrofit.RetrofitClient;
@@ -36,9 +40,10 @@ import retrofit2.Retrofit;
 
 //Spinner code from https://android--code.blogspot.com/2015/08/android-spinner-hint.html
 
-public class AlternativeVoteVoting extends Activity {
+public class AlternativeVoteVoting extends AppCompatActivity {
 
     RetrofitInterface RetrofitInterface;
+    SharedPreferences sharedPreferences;
     TextView title, option1, option2, option3;
     Button submitbtn, back;
     String option1choice;
@@ -59,7 +64,7 @@ public class AlternativeVoteVoting extends Activity {
         Retrofit retrofitClient = RetrofitClient.getInstance();
         RetrofitInterface = retrofitClient.create(RetrofitInterface.class);
 
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+        sharedPreferences = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
         email = sharedPreferences.getString("email", "");
 
         title = findViewById(R.id.title);
@@ -284,6 +289,7 @@ public class AlternativeVoteVoting extends Activity {
                                             Intent intent = new Intent(AlternativeVoteVoting.this, AlternativeVoteResult.class);
                                             intent.putExtra("code", code);
                                             startActivity(intent);
+                                            finish();
                                         }
                                     }
 
@@ -321,6 +327,29 @@ public class AlternativeVoteVoting extends Activity {
         Intent intent = new Intent(AlternativeVoteVoting.this, Home.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.topbar_menu, menu);
+        this.setTitle("Alternative Vote");
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.LogOut:
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("email", "");
+                editor.putBoolean("Logged in", false);
+                editor.apply();
+                Intent intent = new Intent(AlternativeVoteVoting.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
 

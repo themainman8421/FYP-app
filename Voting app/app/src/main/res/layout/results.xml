@@ -9,27 +9,14 @@
     >
 
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Back"
-        android:id="@+id/back"
-        android:onClick="switchScreen"
-        android:background="@drawable/rounded_corners"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginBottom="50dp"
-        android:textColor="@color/white"
-        ></Button>
-
-
     <TableLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="50dp"
         android:layout_marginRight="20dp"
         android:layout_marginLeft="20dp"
-        android:layout_below="@id/back">
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true">
 
         <TextView
             android:id="@+id/winner"

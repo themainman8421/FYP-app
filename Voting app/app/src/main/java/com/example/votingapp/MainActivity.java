@@ -1,5 +1,6 @@
 package com.example.votingapp;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.app.Activity;
@@ -7,10 +8,16 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.SpannableString;
+import android.text.Spanned;
+import android.text.method.LinkMovementMethod;
+import android.text.style.ClickableSpan;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.votingapp.Retrofit.RetrofitClient;
@@ -31,6 +38,7 @@ public class MainActivity extends Activity {
     EditText emailEdit, passwordEdit;
     Button loginbtn;
     ImageView voteImage;
+    TextView register;
     String email;
 
     @Override
@@ -43,25 +51,35 @@ public class MainActivity extends Activity {
 
         sharedPreferences = getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
 
-        findViewById(R.id.Register).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, Register.class);
-                startActivity(intent);
-            }
-        });
-
         if(sharedPreferences.getBoolean("Logged in", false) == true){
             Intent intent = new Intent(MainActivity.this, Home.class);
             startActivity(intent);
+            finish();
         }
 
         emailEdit = (EditText)findViewById(R.id.emailEdit);
         passwordEdit = (EditText)findViewById(R.id.passwordEdit);
         loginbtn = (Button) findViewById(R.id.loginbtn);
         voteImage = (ImageView)findViewById(R.id.voteImage);
-
+        register = (TextView)findViewById(R.id.register);
         voteImage.setImageResource(R.drawable.mobile_vote_image);
+
+        String text = ("Dont have an account? Click here to Register");
+
+        SpannableString spannableString = new SpannableString(text);
+
+        ClickableSpan clickableSpan = new ClickableSpan() {
+            @Override
+            public void onClick(@NonNull View widget) {
+                Intent intent = new Intent(MainActivity.this, Register.class);
+                startActivity(intent);
+            }
+        };
+
+        spannableString.setSpan(clickableSpan, 22, 44, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+
+        register.setText(spannableString);
+        register.setMovementMethod(LinkMovementMethod.getInstance());
 
 
 
@@ -91,7 +109,6 @@ public class MainActivity extends Activity {
                     public void onResponse(Call<Void> call, Response<Void> response) {
 
                         if (response.code() == 200){
-
 //                            User user = response.body();
                             Toast.makeText(MainActivity.this, "You have successfully logged in", Toast.LENGTH_LONG).show();
 //                            Toast.makeText(MainActivity.this, user.getEmail(), Toast.LENGTH_LONG).show();
@@ -101,6 +118,7 @@ public class MainActivity extends Activity {
 
                             Intent intent = new Intent(MainActivity.this, Home.class);
                             startActivity(intent);
+                            finish();
 
                         } else if (response.code() == 404){
                             emailEdit.setError("Email is not registered or verified");
@@ -122,4 +140,5 @@ public class MainActivity extends Activity {
 
     public void switchScreen(View view) {
     }
+
 }

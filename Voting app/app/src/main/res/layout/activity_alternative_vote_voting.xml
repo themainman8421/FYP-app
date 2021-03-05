@@ -5,26 +5,16 @@
     android:orientation="vertical"
     android:background="@color/gray">
 
-    <Button
-        android:id="@+id/back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:onClick="FinishScreen"
-        android:text="Back"
-        android:background="@drawable/rounded_corners"
-        android:textColor="@color/white"
-        ></Button>
+
 
     <TableLayout
         android:id="@+id/table"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="50dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
         android:layout_marginRight="20dp"
-        android:layout_marginLeft="20dp"
-        android:layout_below="@id/back">
+        android:layout_marginLeft="20dp">
 
         <TextView
             android:id="@+id/title"
@@ -38,7 +28,8 @@
             android:paddingTop="5dp"
             android:paddingRight="5dp"
             android:paddingBottom="5dp"
-            android:textColor="@color/black"></TextView>
+            android:textColor="@color/black"
+            ></TextView>
 
         <TableRow>
             <TextView

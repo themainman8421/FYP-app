@@ -7,25 +7,13 @@
     android:background="@color/gray"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/Login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:text="Login"
-        android:layout_marginBottom="20dp"
-        android:background="@color/purple_500"
-        android:textColor="@color/white"
-        ></Button>
-
     <ImageView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/voteImage"
-        android:layout_below="@+id/Login"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="50dp"
+        android:layout_marginTop="100dp"
         android:src="@drawable/mobile_vote_image"
         ></ImageView>
 
@@ -39,7 +27,7 @@
         android:layout_below="@+id/voteImage"
         android:hint="Enter name"
         android:textAlignment="center"
-        android:textColorHint="@color/black"
+        android:textColorHint="@color/gray"
         android:textColor="@color/black"
         android:background="@color/white"
         android:paddingTop="5dp"
@@ -58,7 +46,7 @@
         android:layout_below="@+id/nameEdit"
         android:hint="Enter email"
         android:textAlignment="center"
-        android:textColorHint="@color/black"
+        android:textColorHint="@color/gray"
         android:textColor="@color/black"
         android:background="@color/white"
         android:paddingTop="5dp"
@@ -77,7 +65,7 @@
         android:layout_below="@+id/emailEdit"
         android:inputType="textPassword"
         android:textAlignment="center"
-        android:textColorHint="@color/black"
+        android:textColorHint="@color/gray"
         android:textColor="@color/black"
         android:background="@color/white"
         android:paddingTop="5dp"
@@ -98,5 +86,16 @@
         android:textColor="@color/white"
         android:padding="10dp"
         ></Button>
+
+    <TextView
+        android:id="@+id/login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/registerbtn"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:layout_marginTop="20dp"
+        android:textSize="20dp"
+        ></TextView>
 
 </RelativeLayout>

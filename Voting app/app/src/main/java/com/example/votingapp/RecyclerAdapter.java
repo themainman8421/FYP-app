@@ -1,24 +1,16 @@
 package com.example.votingapp;
 
 import android.content.Context;
-import android.graphics.Typeface;
-import android.text.Html;
-import android.text.Spanned;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Filter;
-import android.widget.Filterable;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
 
@@ -38,7 +30,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
         View v;
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
-        v = layoutInflater.inflate(R.layout.list_layout, parent, false);
+        v = layoutInflater.inflate(R.layout.adapter_list_layout, parent, false);
         return  new MyViewHolder(v, onPollListener);
     }
 

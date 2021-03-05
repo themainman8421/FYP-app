@@ -1,12 +1,20 @@
 package com.example.votingapp;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.votingapp.Retrofit.RetrofitClient;
 import com.example.votingapp.Retrofit.RetrofitInterface;
@@ -22,9 +30,10 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class Results extends Activity {
+public class Results extends AppCompatActivity {
 
     RetrofitInterface RetrofitInterface;
+    SharedPreferences sharedPreferences;
     TextView winner, option1, option2, option3, option1votes, option2votes, option3votes, candidate, votes, method_used;
     PieChart piechart;
 
@@ -66,6 +75,8 @@ public class Results extends Activity {
         setContentView(R.layout.results);
 //        setListAdapter(new MyCustomAdapter(Results.this, R.layout.results_row, options));
 
+        sharedPreferences = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
+
         winner = (TextView)findViewById(R.id.winner);
         option1 = (TextView)findViewById(R.id.option1);
         option2 = (TextView)findViewById(R.id.option2);
@@ -97,8 +108,8 @@ public class Results extends Activity {
         HashMap<String, String> map = new HashMap<>();
         map.put("code", code);
 
-        Call<Poll> call = RetrofitInterface.getResults(map);
 
+        Call<Poll> call = RetrofitInterface.getResults(map);
         call.enqueue(new Callback<Poll>() {
             @Override
             public void onResponse(Call<Poll> call, Response<Poll> response) {
@@ -137,5 +148,28 @@ public class Results extends Activity {
         Intent intent = new Intent(Results.this, Home.class);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.topbar_menu, menu);
+        this.setTitle("Popular vote or Majority vote results");
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.LogOut:
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("email", "");
+                editor.putBoolean("Logged in", false);
+                editor.apply();
+                Intent intent = new Intent(Results.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

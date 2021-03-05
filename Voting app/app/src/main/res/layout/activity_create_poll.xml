@@ -5,27 +5,14 @@
     android:orientation="vertical"
     android:background="@color/gray">
 
-    <Button
-        android:id="@+id/back"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
-        android:layout_marginLeft="20dp"
-        android:onClick="switchScreen"
-        android:text="Back"
-        android:background="@drawable/rounded_corners"
-        android:textColor="@color/white"
-        ></Button>
-
     <TextView
         android:id="@+id/votingtitletextview"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="50dp"
         android:text="Poll Title"
         android:textAlignment="center"
-        android:layout_below="@id/back"
         android:textSize="20dp"
         android:textColor="@color/black"
         android:background="@color/white"
@@ -46,6 +33,7 @@
         android:ems="10"
         android:hint="Put the title for your poll here"
         android:inputType="text"
+        android:textColorHint="@color/gray"
         android:textColor="@color/black"
         android:background="@color/white"
         android:paddingTop="5dp"
@@ -80,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="0dp"
         android:layout_below="@id/votingmethodtextView"
-        android:weightSum="1"
+        android:buttonTint="@color/black"
         android:textColor="@color/black"
         android:background="@color/white"
         android:paddingTop="5dp"
@@ -97,6 +85,8 @@
             android:layout_gravity="center_horizontal"
             android:checked="false"
             android:text="Popular Vote"
+            android:textColor="@color/black"
+            android:buttonTint="@color/black"
             android:textSize="20dp" ></RadioButton>
 
         <RadioButton
@@ -106,6 +96,8 @@
             android:layout_gravity="center_horizontal"
             android:checked="false"
             android:text="Majority Vote"
+            android:textColor="@color/black"
+            android:buttonTint="@color/black"
             android:textSize="20dp" ></RadioButton>
 
         <RadioButton
@@ -115,6 +107,8 @@
             android:layout_gravity="center_horizontal"
             android:checked="false"
             android:text="Alternative Vote"
+            android:textColor="@color/black"
+            android:buttonTint="@color/black"
             android:textSize="20dp"
             ></RadioButton>
     </RadioGroup>
@@ -148,6 +142,7 @@
         android:ems="10"
         android:inputType="text"
         android:hint="First option"
+        android:textColorHint="@color/gray"
         android:textColor="@color/black"
         android:background="@color/white"
         android:paddingTop="5dp"
@@ -167,6 +162,7 @@
         android:ems="10"
         android:inputType="text"
         android:hint="Second option"
+        android:textColorHint="@color/gray"
         android:textColor="@color/black"
         android:background="@color/white"
         android:paddingTop="5dp"
@@ -186,6 +182,7 @@
         android:ems="10"
         android:inputType="text"
         android:hint="Third option"
+        android:textColorHint="@color/gray"
         android:textColor="@color/black"
         android:background="@color/white"
         android:paddingTop="5dp"
@@ -224,6 +221,7 @@
         android:ems="10"
         android:inputType="number"
         android:hint="poll code"
+        android:textColorHint="@color/gray"
         android:textColor="@color/black"
         android:background="@color/white"
         android:paddingTop="5dp"

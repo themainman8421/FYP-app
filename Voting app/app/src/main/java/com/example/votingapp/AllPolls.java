@@ -17,6 +17,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -39,12 +42,12 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-public class AllPolls extends Activity implements RecyclerAdapter.OnPollListener {
+public class AllPolls extends AppCompatActivity implements RecyclerAdapter.OnPollListener {
 
     RetrofitInterface RetrofitInterface;
 
     RecyclerView recyclerView;
-    RecyclerAdapter recyclerAdapter;
+    SharedPreferences sharedPreferences;
     ArrayList<Poll> pollList;
     Button back;
     String email;
@@ -58,8 +61,7 @@ public class AllPolls extends Activity implements RecyclerAdapter.OnPollListener
         Retrofit retrofitClient = RetrofitClient.getInstance();
         RetrofitInterface = retrofitClient.create(RetrofitInterface.class);
 
-        SharedPreferences sharedPreferences = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
-//        recyclerAdapter = new RecyclerAdapter(this, pollList, this);
+        sharedPreferences = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
 
         email = sharedPreferences.getString("email", "");
 
@@ -209,5 +211,26 @@ public class AllPolls extends Activity implements RecyclerAdapter.OnPollListener
 
     }
 
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.topbar_menu, menu);
+        this.setTitle("All Polls");
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch (item.getItemId()){
+            case R.id.LogOut:
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("email", "");
+                editor.putBoolean("Logged in", false);
+                editor.apply();
+                Intent intent = new Intent(AllPolls.this, MainActivity.class);
+                startActivity(intent);
+                finish();
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
 }

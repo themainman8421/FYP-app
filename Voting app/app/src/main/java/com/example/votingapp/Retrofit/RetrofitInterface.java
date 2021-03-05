@@ -10,6 +10,7 @@ import retrofit2.Call;
 
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
 import retrofit2.http.QueryMap;
@@ -22,11 +23,13 @@ public interface RetrofitInterface {
     @POST("/users/Register")
     Call<Void> executeSignup(@Body HashMap<String, String> map);
 
+
     @POST("/poll/createPluralityAndMajorityPoll")
     Call<Void> executenewPoll(@Body HashMap<String, String> map);
 
     @POST("/poll/createAlternativeVotePoll")
-    Call<Void> createAlternativeVotePoll(@Body HashMap<String, String> map);
+    Call<Void> createAlternativeVotePoll(
+            @Body HashMap<String, String> map);
 
     @POST("/poll/pollCode")
     Call<Void> executepollCode(@Body HashMap<String, String> map);
