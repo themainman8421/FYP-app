@@ -42,6 +42,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+//This class get a list of all the polls created and stores the list within a recycler view which is searchable
 public class AllPolls extends AppCompatActivity implements RecyclerAdapter.OnPollListener {
 
     RetrofitInterface RetrofitInterface;
@@ -249,8 +250,11 @@ public class AllPolls extends AppCompatActivity implements RecyclerAdapter.OnPol
     }
 
     //creating the top menu bar
+    @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+//        creating a new menu inflater
         MenuInflater inflater = getMenuInflater();
+        //setting which menu to inflate it with
         inflater.inflate(R.menu.topbar_menu, menu);
         return true;
     }
@@ -259,7 +263,7 @@ public class AllPolls extends AppCompatActivity implements RecyclerAdapter.OnPol
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
-            //if the id selected if for the log out button
+            //if the id selected is for the log out button
             case R.id.LogOut:
                 //get a shared preference editor
                 SharedPreferences.Editor editor = sharedPreferences.edit();
@@ -267,7 +271,7 @@ public class AllPolls extends AppCompatActivity implements RecyclerAdapter.OnPol
                 editor.putString("_id", "");
                 editor.putString("email", "");
                 editor.putBoolean("Logged in", false);
-                //apply th updates
+                //apply the updates
                 editor.apply();
                 //create a new intent for the main activity(Log in page)
                 Intent intent = new Intent(AllPolls.this, MainActivity.class);

@@ -27,6 +27,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
+//This class creates a
 public class AlternativeVoteResult extends AppCompatActivity {
 
     com.example.votingapp.Retrofit.RetrofitInterface RetrofitInterface;
@@ -48,11 +49,15 @@ public class AlternativeVoteResult extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.alternative_vote_result);
 
+
+        //creating a retrofit instance
         Retrofit retrofitClient = RetrofitClient.getInstance();
         RetrofitInterface = retrofitClient.create(RetrofitInterface.class);
 
+        //getting the info within the shared preference
         sharedPreferences = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
 
+//        getting the views within the layout file
         winner = (TextView)findViewById(R.id.winner);
         firstRound = (TextView)findViewById(R.id.firstRound);
         secondRound = (TextView)findViewById(R.id.secondRound);
@@ -79,6 +84,7 @@ public class AlternativeVoteResult extends AppCompatActivity {
         votes2 = (TextView)findViewById(R.id.votes2);
         method_used = (TextView)findViewById(R.id.method_used);
 
+        //setting the text for certain views
         candidate.setText("Candidate");
         votes.setText("Number of Votes");
         candidate2.setText("Candidate");
@@ -87,20 +93,29 @@ public class AlternativeVoteResult extends AppCompatActivity {
         secondRound.setText("Votes after the second round");
 
 
+        //getting the poll code from the intent of the activity
         String code = getIntent().getStringExtra("code");
 
+        //creating a new hashmap
         HashMap<String, String> map = new HashMap<>();
+
+        //putting the poll code in the hashmap
         map.put("code", code);
 
+        //creating a new retrofit call to get the Ranked choice votes
         Call<Poll> call = RetrofitInterface.getAVResults(map);
 
+        //queuing the cal
         call.enqueue(new Callback<Poll>() {
             @Override
             public void onResponse(Call<Poll> call, Response<Poll> response) {
+                //if the call went okay
                 if(response.code() == 201){
 
+                    //getting the response for the poll
                     Poll polls = response.body();
 
+                    //putting the response text into the textviews on the layout page
                     option1text = polls.getOptions().getOption1();
                     option2text = polls.getOptions().getOption2();
                     option3text = polls.getOptions().getOption3();
@@ -124,6 +139,7 @@ public class AlternativeVoteResult extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Poll> call, Throwable t) {
+                //toast message if an error occurs
                 Toast.makeText(AlternativeVoteResult.this, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
@@ -131,31 +147,36 @@ public class AlternativeVoteResult extends AppCompatActivity {
 
     }
 
-    public void FinishScreen(View view) {
-        Intent intent = new Intent(AlternativeVoteResult.this, Home.class);
-        startActivity(intent);
-        finish();
-    }
 
+    //creating the top menu bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        //creating a new menu inflater
         MenuInflater inflater = getMenuInflater();
+        //setting which menu to inflate it with
         inflater.inflate(R.menu.topbar_menu, menu);
-        this.setTitle("Ranked Choice Result");
         return true;
     }
 
+    //method for when an item is selected from the menu bar
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
+            //if the id selected is for the log out button
             case R.id.LogOut:
+                //get a shared preference editor
                 SharedPreferences.Editor editor = sharedPreferences.edit();
+                //update the values withing the preferences
                 editor.putString("_id", "");
                 editor.putString("email", "");
                 editor.putBoolean("Logged in", false);
+                //apply the updates
                 editor.apply();
+                //create a new intent for the main activity(Log in page)
                 Intent intent = new Intent(AlternativeVoteResult.this, MainActivity.class);
+                //start the activity
                 startActivity(intent);
+                //finish this activity
                 finish();
         }
         return super.onOptionsItemSelected(item);
