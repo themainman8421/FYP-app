@@ -40,6 +40,7 @@ import retrofit2.Retrofit;
 
 //Spinner code from https://android--code.blogspot.com/2015/08/android-spinner-hint.html
 
+//This class allows the user to vote on Ranked Choice voting methods
 public class AlternativeVoteVoting extends AppCompatActivity {
 
     RetrofitInterface RetrofitInterface;
@@ -61,20 +62,23 @@ public class AlternativeVoteVoting extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_alternative_vote_voting);
 
+        //creating a retrofit instance
         Retrofit retrofitClient = RetrofitClient.getInstance();
         RetrofitInterface = retrofitClient.create(RetrofitInterface.class);
 
+        //getting what is stored within the shared preferences
         sharedPreferences = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
         id = sharedPreferences.getString("_id", "");
 
+        //getting the views withing the layout file
         title = findViewById(R.id.title);
         option1 = findViewById(R.id.option1);
         option2 = findViewById(R.id.option2);
         option3 = findViewById(R.id.option3);
         submitbtn = findViewById(R.id.submitbtn);
 
+        //getting the poll code from the intent
         code = getIntent().getStringExtra("code");
-        Log.d("TAG", code);
 
         // Spinner element
         spinner = (Spinner) findViewById(R.id.spinner);
@@ -90,18 +94,21 @@ public class AlternativeVoteVoting extends AppCompatActivity {
         };
 
 
+        //creating a new hashmap
         HashMap<String, String> map = new HashMap<>();
+
+        //putting data into the hashmap
         map.put("code", code);
         map.put("id", id);
-        Log.d("TAG", "onCreate() returned: " +  map);
 
-
-
+        //creating a new list with the preferences
         final List<String> preferenceList = new ArrayList<>(Arrays.asList(preferences));
 
         // Initializing an ArrayAdapter
         final ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(
                 this,R.layout.spinner_item,preferenceList){
+
+            //disabling the first option in the list
             @Override
             public boolean isEnabled(int position){
                 if(position == 0)
@@ -115,9 +122,12 @@ public class AlternativeVoteVoting extends AppCompatActivity {
                     return true;
                 }
             }
+
             @Override
             public View getDropDownView(int position, View convertView,
                                         ViewGroup parent) {
+
+                //getting the position within the spinner and setting the first one to grey
                 View view = super.getDropDownView(position, convertView, parent);
                 TextView tv = (TextView) view;
                 if(position == 0){
@@ -131,26 +141,24 @@ public class AlternativeVoteVoting extends AppCompatActivity {
             }
         };
 
+        //setting the layout for the spinners
         spinnerArrayAdapter.setDropDownViewResource(R.layout.spinner_item);
         spinner.setAdapter(spinnerArrayAdapter);
         spinner2.setAdapter(spinnerArrayAdapter);
         spinner3.setAdapter(spinnerArrayAdapter);
 
+
+        //setting an on item select listener for the spinner
         spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItemText = (String) parent.getItemAtPosition(position);
-                // If user change the default selection
-                // First item is disable and it is used for hint
-//                if(position == 0){
-//                    nochoice = selectedItemText;
-//                }
+                //get the text if the position is greater than 0
                 if(position > 0){
 
+                    //storing the text
                     option1choice = selectedItemText;
-                    Log.d("TAG", "onItemSelected() returned: " + option1choice);
-                }else{
-                    option2choice = "null";
+
                 }
             }
 
@@ -160,17 +168,17 @@ public class AlternativeVoteVoting extends AppCompatActivity {
             }
         });
 
+        //setting an on item select listener for the spinner
         spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItemText = (String) parent.getItemAtPosition(position);
 
-
+                //get the text if the position is greater than 0
                 if(position > 0){
+                    //storing the text
                     option2choice = selectedItemText;
-                    Log.d("TAG", "onItemSelected() returned: " + option2choice);
-                }else{
-                    option2choice = "null";
+
                 }
             }
 
@@ -180,18 +188,17 @@ public class AlternativeVoteVoting extends AppCompatActivity {
             }
         });
 
-
-
+        //setting an on item select listener for the spinner
         spinner3.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selectedItemText = (String) parent.getItemAtPosition(position);
 
+                //get the text if the position is greater than 0
                 if(position > 0){
+                    //storing the text
                     option3choice = selectedItemText;
-                    Log.d("TAG", "onItemSelected() returned: " + option3choice);
-                } else {
-                    option3choice = "null";
+
                 }
             }
 
@@ -201,16 +208,21 @@ public class AlternativeVoteVoting extends AppCompatActivity {
             }
         });
 
+        //creating a retrofit call that gets the poll
         Call<Poll> call = RetrofitInterface.getPoll(map);
 
+        //queuing the call
         call.enqueue(new Callback<Poll>() {
             @Override
             public void onResponse(Call<Poll> call, Response<Poll> response) {
 
+                //if everything was okay
                 if(response.code() == 201){
 
+                    //store the body of the response
                     Poll poll = response.body();
 
+                    //set the text from the poll gotten
                     title.setText(poll.getTitle());
                     option1.setText(poll.getOptions().getOption1());
                     option2.setText(poll.getOptions().getOption2());
@@ -221,6 +233,7 @@ public class AlternativeVoteVoting extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Poll> call, Throwable t) {
+                //if error show a toast message
                 Toast.makeText(AlternativeVoteVoting.this, t.getMessage(), Toast.LENGTH_LONG).show();
             }
 
@@ -230,16 +243,20 @@ public class AlternativeVoteVoting extends AppCompatActivity {
 
 
 
+        //create a onclick listener for the submit button
         submitbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                String item = "0";
+                //if not all options are selected post a toast message
                 if (spinner.getSelectedItemPosition() == 0 || spinner2.getSelectedItemPosition() == 0 || spinner3.getSelectedItemPosition() == 0){
                     Toast.makeText(AlternativeVoteVoting.this, "All candidates must have a preferences", Toast.LENGTH_LONG).show();
                 }
+                //if the same option has been chosen more than once send a toast message
                 else if(option1choice.equals(option2choice) || option1choice.equals(option3choice) || option2choice.equals(option3choice)){
                     Toast.makeText(AlternativeVoteVoting.this, "All candidates must have different preferences", Toast.LENGTH_LONG).show();
-                }else{
+                }
+                //get the text form the option chosen
+                else{
 
                     if (option1choice.equals("First Preference")){
                         firstPreference = (String) option1.getText();
@@ -265,50 +282,60 @@ public class AlternativeVoteVoting extends AppCompatActivity {
                         thirdPreference = (String) option3.getText();
                     }
 
+                    //create a hash map
                     HashMap<String, String> map = new HashMap<>();
+                    //put the data into the hash map
                     map.put("code", code);
                     map.put("firstPreference", firstPreference);
                     map.put("secondPreference", secondPreference);
                     map.put("thirdPreference", thirdPreference);
                     map.put("id", id);
 
+                    //create a new retrofit call to increase the vote
                     Call<Void> call = RetrofitInterface.increaseAVVote(map);
 
+                    //queue the call
                     call.enqueue(new Callback<Void>() {
                         @Override
                         public void onResponse(Call<Void> call, Response<Void> response) {
+                            //if everything is okay
                             if(response.code() == 200){
 
+                                //create a new call which adds that poll code to the user info
                                 Call<Void> call2 = RetrofitInterface.addPollVotedOn(map);
+                                //queue the call
                                 call2.enqueue(new Callback<Void>() {
                                     @Override
                                     public void onResponse(Call<Void> call, Response<Void> response) {
+                                        //if everything is okay
                                         if(response.code() == 200){
+                                            //create a success toast message
                                             Toast.makeText(AlternativeVoteVoting.this, "Success!", Toast.LENGTH_LONG).show();
+                                            //create a new intent
                                             Intent intent = new Intent(AlternativeVoteVoting.this, AlternativeVoteResult.class);
+                                            //put the poll code into the intent
                                             intent.putExtra("code", code);
+                                            //start the activity
                                             startActivity(intent);
+                                            //finish this activity
                                             finish();
                                         }
                                     }
 
                                     @Override
                                     public void onFailure(Call<Void> call, Throwable t) {
+                                        //if an error create a toast message
                                         Toast.makeText(AlternativeVoteVoting.this, t.getMessage(), Toast.LENGTH_LONG).show();
                                     }
                                 });
 
-
-//                                Toast.makeText(AlternativeVoteVoting.this, "Success!", Toast.LENGTH_LONG).show();
-//                                Intent intent = new Intent(AlternativeVoteVoting.this, AlternativeVoteResult.class);
-//                                intent.putExtra("code", code);
-//                                startActivity(intent);
 
                             }
                         }
 
                         @Override
                         public void onFailure(Call<Void> call, Throwable t) {
+                            //if an error create a toast message
                             Toast.makeText(AlternativeVoteVoting.this, t.getMessage(), Toast.LENGTH_LONG).show();
                         }
                     });
@@ -321,32 +348,34 @@ public class AlternativeVoteVoting extends AppCompatActivity {
 
     }
 
-
-    public void FinishScreen(View view) {
-        Intent intent = new Intent(AlternativeVoteVoting.this, Home.class);
-        startActivity(intent);
-        finish();
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        //creating a new menu inflater
         MenuInflater inflater = getMenuInflater();
+        //setting which menu to inflate it with
         inflater.inflate(R.menu.topbar_menu, menu);
-        this.setTitle("Alternative Vote");
         return true;
     }
 
+    //method for when an item is selected from the menu bar
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
+            //if the id selected is for the log out button
             case R.id.LogOut:
+                //get a shared preference editor
                 SharedPreferences.Editor editor = sharedPreferences.edit();
+                //update the values withing the preferences
                 editor.putString("_id", "");
                 editor.putString("email", "");
                 editor.putBoolean("Logged in", false);
+                //apply the updates
                 editor.apply();
+                //create a new intent for the main activity(Log in page)
                 Intent intent = new Intent(AlternativeVoteVoting.this, MainActivity.class);
+                //start the activity
                 startActivity(intent);
+                //finish this activity
                 finish();
         }
         return super.onOptionsItemSelected(item);

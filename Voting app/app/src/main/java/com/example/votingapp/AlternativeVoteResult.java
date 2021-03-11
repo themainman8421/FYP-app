@@ -27,7 +27,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 
-//This class creates a
+//This class get the results for chosen poll and displays them in the view
 public class AlternativeVoteResult extends AppCompatActivity {
 
     com.example.votingapp.Retrofit.RetrofitInterface RetrofitInterface;
