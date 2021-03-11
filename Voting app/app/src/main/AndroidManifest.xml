@@ -3,6 +3,7 @@
     package="com.example.votingapp">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
 
     <application
         android:allowBackup="true"
@@ -25,25 +26,34 @@
             android:value="true" />
 
         <activity android:name=".MainActivity">
-            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".Register" ></activity>
-        <activity android:name=".Home" ></activity>
-        <activity android:name=".CreatePoll" ></activity>
-        <activity android:name=".JoinPoll" ></activity>
-        <activity android:name=".Voting" ></activity>
-        <activity android:name=".Results" ></activity>
-        <activity android:name=".AlternativeVoteVoting"></activity>
-        <activity android:name=".AlternativeVoteResult"></activity>
-        <activity android:name=".PollingMethodsExplained"></activity>
-        <activity android:name=".AllPolls"></activity>
-        <activity android:name=".MyPolls"></activity>
-        <activity android:name=".SuccessfulRegister"></activity>
+        <activity   android:name=".Register" ></activity>
+        <activity   android:name=".Home"
+                    android:label="Home"></activity>
+        <activity   android:name=".CreatePoll"
+                    android:label="Create Poll"></activity>
+        <activity   android:name=".JoinPoll"
+                    android:label="Joining a poll"></activity>
+        <activity   android:name=".Voting"
+                    android:label="Voting"></activity>
+        <activity   android:name=".Results"
+                    android:label="Results"></activity>
+        <activity   android:name=".AlternativeVoteVoting"
+                    android:label="Voting"></activity>
+        <activity   android:name=".AlternativeVoteResult"
+                    android:label="Results"></activity>
+        <activity   android:name=".PollingMethodsExplained"
+                    android:label="Polling Methods Explained"></activity>
+        <activity   android:name=".AllPolls"
+                    android:label="All Polls"></activity>
+        <activity   android:name=".MyPolls"
+                    android:label="My Polls"></activity>
+        <activity   android:name=".SuccessfulRegister"></activity>
     </application>
 
 </manifest>

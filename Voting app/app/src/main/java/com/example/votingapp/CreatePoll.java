@@ -61,6 +61,7 @@ public class CreatePoll extends AppCompatActivity {
         radioButton2 = findViewById(R.id.radioButton2);
         radioButton3 = findViewById(R.id.radioButton3);
 
+
         submitbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -86,12 +87,12 @@ public class CreatePoll extends AppCompatActivity {
                 map.put("votingmethod", selectedtext);
 
 
-                Call<Void> call = RetrofitInterface.executepollCode(map);
+                Call<Void> call = RetrofitInterface.pollInUse(map);
 
                 call.enqueue((new Callback<Void>() {
                     @Override
                     public void onResponse(Call<Void> call, Response<Void> response) {
-                        if(response.code() == 200){
+                        if(response.code() == 400){
                             pollcodeedittext.setError("Poll code already in use");
                         }
                         else{
@@ -180,6 +181,7 @@ public class CreatePoll extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.LogOut:
                 SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("_id", "");
                 editor.putString("email", "");
                 editor.putBoolean("Logged in", false);
                 editor.apply();

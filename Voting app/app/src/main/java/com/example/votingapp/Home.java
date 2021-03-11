@@ -94,6 +94,7 @@ public class Home extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.LogOut:
                 SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("_id", "");
                 editor.putString("email", "");
                 editor.putBoolean("Logged in", false);
                 editor.apply();

@@ -34,7 +34,6 @@ public class AlternativeVoteResult extends AppCompatActivity {
             option3votes, candidate, votes, method_used, firstRound, secondRound,
             option1second, option2second, option3second, option1votessecond,
             option2votessecond, option3votessecond, candidate2, votes2;
-    Button back;
 
     String option1text;
     String option2text;
@@ -79,8 +78,6 @@ public class AlternativeVoteResult extends AppCompatActivity {
         candidate2 = (TextView)findViewById(R.id.candidate2);
         votes2 = (TextView)findViewById(R.id.votes2);
         method_used = (TextView)findViewById(R.id.method_used);
-
-        back = (Button)findViewById(R.id.back);
 
         candidate.setText("Candidate");
         votes.setText("Number of Votes");
@@ -153,6 +150,7 @@ public class AlternativeVoteResult extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.LogOut:
                 SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("_id", "");
                 editor.putString("email", "");
                 editor.putBoolean("Logged in", false);
                 editor.apply();

@@ -96,23 +96,23 @@ public class MainActivity extends Activity {
 
                 SharedPreferences.Editor editor = sharedPreferences.edit();
 
-                editor.putString("email", email);
-                editor.commit();
-
 //                Intent intent = new Intent(MainActivity.this, Home.class);
 //                startActivity(intent);
 
-                Call<Void> call = RetrofitInterface.executeLogin(map);
+                Call<User> call = RetrofitInterface.executeLogin(map);
 
-                call.enqueue(new Callback<Void>() {
+                call.enqueue(new Callback<User>() {
                     @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
+                    public void onResponse(Call<User> call, Response<User> response) {
 
                         if (response.code() == 200){
-//                            User user = response.body();
+                            User user = response.body();
                             Toast.makeText(MainActivity.this, "You have successfully logged in", Toast.LENGTH_LONG).show();
 //                            Toast.makeText(MainActivity.this, user.getEmail(), Toast.LENGTH_LONG).show();
 
+                            assert user != null;
+                            String id = user.get_id();
+                            editor.putString("_id", id);
                             editor.putBoolean("Logged in", true);
                             editor.commit();
 
@@ -129,8 +129,9 @@ public class MainActivity extends Activity {
                     }
 
                     @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
+                    public void onFailure(Call<User> call, Throwable t) {
                         Toast.makeText(MainActivity.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                        Log.e("TAG", "onFailure: " + t);
                     }
                 });
             }

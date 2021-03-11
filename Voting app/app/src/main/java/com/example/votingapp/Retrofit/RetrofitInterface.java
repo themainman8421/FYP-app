@@ -18,7 +18,7 @@ import retrofit2.http.QueryMap;
 public interface RetrofitInterface {
 
     @POST("/users/Login")
-    Call<Void> executeLogin(@Body HashMap<String, String> map);
+    Call<User> executeLogin(@Body HashMap<String, String> map);
 
     @POST("/users/Register")
     Call<Void> executeSignup(@Body HashMap<String, String> map);
@@ -30,6 +30,9 @@ public interface RetrofitInterface {
     @POST("/poll/createAlternativeVotePoll")
     Call<Void> createAlternativeVotePoll(
             @Body HashMap<String, String> map);
+
+    @POST("/poll/pollInUse")
+    Call<Void> pollInUse(@Body HashMap<String, String> map);
 
     @POST("/poll/pollCode")
     Call<Void> executepollCode(@Body HashMap<String, String> map);

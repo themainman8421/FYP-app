@@ -45,14 +45,14 @@ public class AlternativeVoteVoting extends AppCompatActivity {
     RetrofitInterface RetrofitInterface;
     SharedPreferences sharedPreferences;
     TextView title, option1, option2, option3;
-    Button submitbtn, back;
+    Button submitbtn;
     String option1choice;
     String option2choice;
     String option3choice;
     String firstPreference;
     String secondPreference;
     String thirdPreference;
-    String email;
+    String id;
     String code;
     Spinner spinner, spinner2, spinner3;
 
@@ -65,14 +65,13 @@ public class AlternativeVoteVoting extends AppCompatActivity {
         RetrofitInterface = retrofitClient.create(RetrofitInterface.class);
 
         sharedPreferences = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
-        email = sharedPreferences.getString("email", "");
+        id = sharedPreferences.getString("_id", "");
 
         title = findViewById(R.id.title);
         option1 = findViewById(R.id.option1);
         option2 = findViewById(R.id.option2);
         option3 = findViewById(R.id.option3);
         submitbtn = findViewById(R.id.submitbtn);
-        back = findViewById(R.id.back);
 
         code = getIntent().getStringExtra("code");
         Log.d("TAG", code);
@@ -93,7 +92,7 @@ public class AlternativeVoteVoting extends AppCompatActivity {
 
         HashMap<String, String> map = new HashMap<>();
         map.put("code", code);
-        map.put("email", email);
+        map.put("id", id);
         Log.d("TAG", "onCreate() returned: " +  map);
 
 
@@ -271,7 +270,7 @@ public class AlternativeVoteVoting extends AppCompatActivity {
                     map.put("firstPreference", firstPreference);
                     map.put("secondPreference", secondPreference);
                     map.put("thirdPreference", thirdPreference);
-                    map.put("email", email);
+                    map.put("id", id);
 
                     Call<Void> call = RetrofitInterface.increaseAVVote(map);
 
@@ -342,6 +341,7 @@ public class AlternativeVoteVoting extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.LogOut:
                 SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("_id", "");
                 editor.putString("email", "");
                 editor.putBoolean("Logged in", false);
                 editor.apply();

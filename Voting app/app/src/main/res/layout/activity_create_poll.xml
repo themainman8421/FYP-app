@@ -106,7 +106,7 @@
             android:layout_height="55dp"
             android:layout_gravity="center_horizontal"
             android:checked="false"
-            android:text="Alternative Vote"
+            android:text="Ranked Choice"
             android:textColor="@color/black"
             android:buttonTint="@color/black"
             android:textSize="20dp"

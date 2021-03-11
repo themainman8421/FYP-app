@@ -39,7 +39,7 @@ public class Voting extends AppCompatActivity {
     TextView titleTextView;
     RadioGroup radioGroup;
     Button submitbtn;
-    String votingMethod, email, code;
+    String votingMethod, id, code;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,7 +51,7 @@ public class Voting extends AppCompatActivity {
 
         sharedPreferences = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
 
-        email = sharedPreferences.getString("email", "");
+        id = sharedPreferences.getString("_id", "");
 
         code = getIntent().getStringExtra("code");
 
@@ -64,7 +64,7 @@ public class Voting extends AppCompatActivity {
 
         HashMap<String, String> map = new HashMap<>();
         map.put("code", code);
-        map.put("email", email);
+        map.put("id", id);
 
         Call<Poll> call = RetrofitInterface.getPoll(map);
 
@@ -175,6 +175,7 @@ public class Voting extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.LogOut:
                 SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("_id", "");
                 editor.putString("email", "");
                 editor.putBoolean("Logged in", false);
                 editor.apply();

@@ -49,8 +49,7 @@ public class AllPolls extends AppCompatActivity implements RecyclerAdapter.OnPol
     RecyclerView recyclerView;
     SharedPreferences sharedPreferences;
     ArrayList<Poll> pollList;
-    Button back;
-    String email;
+    String id;
     EditText search;
 
     @Override
@@ -63,11 +62,10 @@ public class AllPolls extends AppCompatActivity implements RecyclerAdapter.OnPol
 
         sharedPreferences = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
 
-        email = sharedPreferences.getString("email", "");
+        id = sharedPreferences.getString("_id", "");
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         pollList = new ArrayList<>();
-        back = (Button)findViewById(R.id.back);
         search = (EditText)findViewById(R.id.search);
 
         search.setSingleLine(true);
@@ -120,13 +118,13 @@ public class AllPolls extends AppCompatActivity implements RecyclerAdapter.OnPol
         try{
             ArrayList<Poll> pollFilteredList = new ArrayList<Poll>();
             for (Poll poll : pollList){
+                Log.d("TAG", "filter: " + pollList);
                 if(poll.getTitle().toLowerCase().contains(toString.toLowerCase())){
                     pollFilteredList.add(poll);
+                    PutDataIntoRecyclerView(pollFilteredList);
                 }
             }
-            PutDataIntoRecyclerView(pollFilteredList);
         }catch (Exception e){
-            Toast.makeText(AllPolls.this, e.getMessage(), Toast.LENGTH_LONG).show();
             Log.d("TAG", "error: " + e);
         }
 
@@ -155,7 +153,7 @@ public class AllPolls extends AppCompatActivity implements RecyclerAdapter.OnPol
         HashMap<String, String> map = new HashMap<>();
 
         map.put("code", code);
-        map.put("email", email);
+        map.put("id", id);
 
         Call<Void> call = RetrofitInterface.executepollCode(map);
 
@@ -214,7 +212,7 @@ public class AllPolls extends AppCompatActivity implements RecyclerAdapter.OnPol
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.topbar_menu, menu);
-        this.setTitle("All Polls");
+//        this.setTitle("All Polls");
         return true;
     }
 
@@ -223,6 +221,7 @@ public class AllPolls extends AppCompatActivity implements RecyclerAdapter.OnPol
         switch (item.getItemId()){
             case R.id.LogOut:
                 SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("_id", "");
                 editor.putString("email", "");
                 editor.putBoolean("Logged in", false);
                 editor.apply();

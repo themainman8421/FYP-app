@@ -17,7 +17,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class PollingMethodsExplained extends AppCompatActivity {
 
-    Button back, submit;
+    Button submit;
     TextView about, popularvotetitle, popularvotetext, majorityvotetitle, majorityvotetext, rankedchoicetitle, rankedchoicetext;
     SharedPreferences sharedPreferences;
 
@@ -28,7 +28,7 @@ public class PollingMethodsExplained extends AppCompatActivity {
 
         sharedPreferences = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
 
-        back = (Button)findViewById(R.id.back);
+
         submit = (Button)findViewById(R.id.submit);
         about = (TextView)findViewById(R.id.About);
         popularvotetitle = (TextView)findViewById(R.id.PopularVoteTitle);

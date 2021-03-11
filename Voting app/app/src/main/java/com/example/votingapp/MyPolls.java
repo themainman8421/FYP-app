@@ -45,8 +45,7 @@ public class MyPolls extends AppCompatActivity implements RecyclerAdapter.OnPoll
     SharedPreferences sharedPreferences;
     RecyclerView recyclerView;
     ArrayList<Poll> pollList;
-    Button back;
-    String email;
+    String id;
     EditText search;
 
     @Override
@@ -59,14 +58,13 @@ public class MyPolls extends AppCompatActivity implements RecyclerAdapter.OnPoll
 
         sharedPreferences = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
 
-        email = sharedPreferences.getString("email", "");
+        id = sharedPreferences.getString("_id", "");
 
         recyclerView = (RecyclerView)findViewById(R.id.recyclerView);
         pollList = new ArrayList<>();
-        back = (Button)findViewById(R.id.back);
         search = (EditText)findViewById(R.id.search);
 
-        search.setSingleLine(true);
+//        search.setSingleLine(true);
 
         search.addTextChangedListener(new TextWatcher() {
             @Override
@@ -76,7 +74,7 @@ public class MyPolls extends AppCompatActivity implements RecyclerAdapter.OnPoll
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-
+//                filter(s.toString());
             }
 
             @Override
@@ -86,7 +84,7 @@ public class MyPolls extends AppCompatActivity implements RecyclerAdapter.OnPoll
         });
 
         HashMap<String, String> map = new HashMap<>();
-        map.put("email", email);
+        map.put("id", id);
 
         Call<List<Poll>> call = RetrofitInterface.getallUserPolls(map);
 
@@ -114,16 +112,16 @@ public class MyPolls extends AppCompatActivity implements RecyclerAdapter.OnPoll
     }
 
     private void filter(String toString) {
+        Log.d("TAG", "filter: " + toString);
         try{
             ArrayList<Poll> pollFilteredList = new ArrayList<Poll>();
             for (Poll poll : pollList){
                 if(poll.getTitle().toLowerCase().contains(toString.toLowerCase())){
                     pollFilteredList.add(poll);
+                    PutDataIntoRecyclerView(pollFilteredList);
                 }
             }
-            PutDataIntoRecyclerView(pollFilteredList);
         }catch (Exception e){
-            Toast.makeText(MyPolls.this, e.getMessage(), Toast.LENGTH_LONG).show();
             Log.d("TAG", "error: " + e);
         }
     }
@@ -148,7 +146,7 @@ public class MyPolls extends AppCompatActivity implements RecyclerAdapter.OnPoll
         HashMap<String, String> map = new HashMap<>();
 
         map.put("code", code);
-        map.put("email", email);
+        map.put("id", id);
 
         Call<Void> call = RetrofitInterface.executepollCode(map);
 
@@ -192,6 +190,7 @@ public class MyPolls extends AppCompatActivity implements RecyclerAdapter.OnPoll
         switch (item.getItemId()){
             case R.id.LogOut:
                 SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("_id", "");
                 editor.putString("email", "");
                 editor.putBoolean("Logged in", false);
                 editor.apply();

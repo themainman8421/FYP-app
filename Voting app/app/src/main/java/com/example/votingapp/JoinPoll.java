@@ -36,7 +36,7 @@ public class JoinPoll extends AppCompatActivity {
     SharedPreferences sharedPreferences;
     EditText pollCodeEditText;
     Button submitbtn;
-    String email;
+    String id;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,7 +49,7 @@ public class JoinPoll extends AppCompatActivity {
 
         sharedPreferences = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
 
-        email = sharedPreferences.getString("email", "");
+        id = sharedPreferences.getString("_id", "");
 
         pollCodeEditText = findViewById(R.id.pollCodeEditText);
         submitbtn = findViewById(R.id.submitbtn);
@@ -61,7 +61,7 @@ public class JoinPoll extends AppCompatActivity {
                 HashMap<String, String> map = new HashMap<>();
 
                 map.put("code", pollCodeEditText.getText().toString());
-                map.put("email", email);
+                map.put("id", id);
 
                 Call<Void> call = RetrofitInterface.executepollCode(map);
 
@@ -136,6 +136,7 @@ public class JoinPoll extends AppCompatActivity {
         switch (item.getItemId()){
             case R.id.LogOut:
                 SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("_id", "");
                 editor.putString("email", "");
                 editor.putBoolean("Logged in", false);
                 editor.apply();
