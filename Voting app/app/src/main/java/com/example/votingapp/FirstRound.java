@@ -1,5 +1,6 @@
 package com.example.votingapp;
 
+//Allows to get the firs round votes from the ranked choice vote
 public class FirstRound {
 
     private String option1firstroundtotalvotes;
