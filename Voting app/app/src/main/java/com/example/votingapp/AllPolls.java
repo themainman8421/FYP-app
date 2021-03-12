@@ -233,7 +233,7 @@ public class AllPolls extends AppCompatActivity implements RecyclerAdapter.OnPol
                     startActivity(intent);
 
                 } else if(response.code() == 400){
-                    //toast message if theres an error
+                    //toast message if poll doesnt exist
                     Toast.makeText(AllPolls.this, "Poll does not exist", Toast.LENGTH_LONG).show();
                 }
 
@@ -241,7 +241,7 @@ public class AllPolls extends AppCompatActivity implements RecyclerAdapter.OnPol
 
             @Override
             public void onFailure(Call<Void> call, Throwable t) {
-                //toast mesage if theres an error
+                //toast message if theres an error
                 Toast.makeText(AllPolls.this, t.getMessage(), Toast.LENGTH_LONG).show();
             }
         });
