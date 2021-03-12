@@ -1,6 +1,6 @@
 package com.example.votingapp;
 
-//Allows to get the firs round votes from the ranked choice vote
+//Nested Json Class for the alternative vote poll
 public class FirstRound {
 
     private String option1firstroundtotalvotes;

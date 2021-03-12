@@ -1,6 +1,6 @@
 package com.example.votingapp;
 
-//Nested Json Class for the voting options
+//Nested Json Class for the poll options
 public class Options {
 
     private String option1;

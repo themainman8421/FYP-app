@@ -15,6 +15,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+//class that displays how the polls work
 public class PollingMethodsExplained extends AppCompatActivity {
 
     Button submit;
@@ -26,9 +27,11 @@ public class PollingMethodsExplained extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.polling_methods_explained);
 
+        //getting the shared preferences
         sharedPreferences = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
 
 
+        //Getting the views in the layout file
         submit = (Button)findViewById(R.id.submit);
         about = (TextView)findViewById(R.id.About);
         popularvotetitle = (TextView)findViewById(R.id.PopularVoteTitle);
@@ -38,40 +41,47 @@ public class PollingMethodsExplained extends AppCompatActivity {
         rankedchoicetitle = (TextView)findViewById(R.id.AlternativeVoteTitle);
         rankedchoicetext = (TextView)findViewById(R.id.AlternativeVote);
 
+        //adding a onclick listener on the submit button
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                //create a new intent for the create poll activity
                 Intent intent = new Intent(PollingMethodsExplained.this, CreatePoll.class);
+                //starting the activity
                 startActivity(intent);
             }
         });
 
     }
 
-    public void SwitchScreen(View view) {
-        finish();
-        Intent intent = new Intent(PollingMethodsExplained.this, Home.class);
-        startActivity(intent);
-    }
-
+    //creating the top menu bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        //creating a new menu inflater
         MenuInflater inflater = getMenuInflater();
+        //setting which menu to inflate it with
         inflater.inflate(R.menu.topbar_menu, menu);
-        this.setTitle("Polling methods explained");
         return true;
     }
 
+    //method for when an item is selected from the menu bar
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
+            //if the id selected is for the log out button
             case R.id.LogOut:
+                //get a shared preference editor
                 SharedPreferences.Editor editor = sharedPreferences.edit();
+                //update the values withing the preferences
                 editor.putString("email", "");
                 editor.putBoolean("Logged in", false);
+                //apply the updates
                 editor.apply();
+                //create a new intent for the main activity(Log in page)
                 Intent intent = new Intent(PollingMethodsExplained.this, MainActivity.class);
+                //start the activity
                 startActivity(intent);
+                //finish this activity
                 finish();
         }
         return super.onOptionsItemSelected(item);

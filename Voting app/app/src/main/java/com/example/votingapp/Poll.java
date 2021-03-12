@@ -3,6 +3,7 @@ package com.example.votingapp;
 import java.util.ArrayList;
 import java.util.List;
 
+// Json Class for the poll
 public class Poll {
 
     private String title;
