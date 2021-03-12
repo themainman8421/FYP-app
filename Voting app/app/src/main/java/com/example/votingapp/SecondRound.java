@@ -1,5 +1,6 @@
 package com.example.votingapp;
 
+//Nested Json Class for the alternative vote poll
 public class SecondRound {
 
     private String option1secondroundtotalvotes;
