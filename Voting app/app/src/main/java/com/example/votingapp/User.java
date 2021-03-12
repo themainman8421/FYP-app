@@ -1,5 +1,6 @@
 package com.example.votingapp;
 
+//class that get the user info from requests
 public class User {
 
     private String email;

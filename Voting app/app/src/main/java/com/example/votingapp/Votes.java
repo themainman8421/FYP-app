@@ -1,5 +1,6 @@
 package com.example.votingapp;
 
+//nested JSON class that gets the votes for popular or majority votes
 public class Votes {
 
     private String option1votes;
