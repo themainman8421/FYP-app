@@ -35,48 +35,16 @@ public class Results extends AppCompatActivity {
     RetrofitInterface RetrofitInterface;
     SharedPreferences sharedPreferences;
     TextView winner, option1, option2, option3, option1votes, option2votes, option3votes, candidate, votes, method_used;
-    PieChart piechart;
-
-//    String[] options = {
-//            "one", "two", "three"
-//    };
-//
-//    String[] vote = {
-//            "1", "10", "100"
-//    };
-
-
-
-
-//    public class MyCustomAdapter extends ArrayAdapter<String>{
-//
-//        public MyCustomAdapter(Context context, int textViewResourceId, String[] options, String[] votes){
-//            super(context, textViewResourceId, options, votes);
-//        }
-//
-//        public View getView(int position, View convertView, ViewGroup parent){
-//            LayoutInflater inflater = getLayoutInflater();
-//            View row = inflater.inflate(R.layout.results_row, parent, false);
-//
-//            TextView label = (TextView)row.findViewById(R.id.op);
-//            label.setText(options[position]);
-//
-//            TextView votes = (TextView)row.findViewById(R.id.votes);
-//            votes.setText(vote[position]);
-//
-//            return row;
-//        }
-//    }
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.results);
-//        setListAdapter(new MyCustomAdapter(Results.this, R.layout.results_row, options));
 
+        //getting the shared preferences
         sharedPreferences = getApplicationContext().getSharedPreferences("UserInfo", Context.MODE_PRIVATE);
 
+        //Getting the views from the layout file
         winner = (TextView)findViewById(R.id.winner);
         option1 = (TextView)findViewById(R.id.option1);
         option2 = (TextView)findViewById(R.id.option2);
@@ -87,38 +55,37 @@ public class Results extends AppCompatActivity {
         candidate = (TextView)findViewById(R.id.candidate);
         votes = (TextView)findViewById(R.id.votes);
         method_used = (TextView)findViewById(R.id.method_used);
-//        piechart = (PieChart)findViewById(R.id.barChart);
 
-//        winner.setText("i won!!!");
-//        option1.setText("hgfvd");
-//        option2.setText("hgazdfgh");
-//        option3.setText("ggfdsdfgh");
-//        option1votes.setText("gfdashjmnhg");
-//        option2votes.setText("mkloiytfgb");
-//        option3votes.setText("nbvcsaertyui");
+        //adding text
         candidate.setText("Candidate");
         votes.setText("Number of Votes");
 
+        //getting the code from the intent
         String code = getIntent().getStringExtra("code");
-//        String code = "623";
 
+        //creating a retrofit instance
         Retrofit retrofitClient = RetrofitClient.getInstance();
         RetrofitInterface = retrofitClient.create(RetrofitInterface.class);
 
+        //creating a new hashmap and adding to it
         HashMap<String, String> map = new HashMap<>();
         map.put("code", code);
 
-
+        //creating a new retrofit call to get the results for a popular or majority vote
         Call<Poll> call = RetrofitInterface.getResults(map);
+        //queuing the call
         call.enqueue(new Callback<Poll>() {
             @Override
             public void onResponse(Call<Poll> call, Response<Poll> response) {
+                //if everything is okay
                 if(response.code() == 200 || response.code() == 201 || response.code() == 202 || response.code() == 203
                         || response.code() == 204 || response.code() == 205 || response.code() == 206 || response.code() == 207
                 || response.code() == 208 || response.code() == 209 || response.code() == 210){
 
+                    //get the poll info from the response body
                     Poll polls = response.body();
 
+                    //setting the text from the poll info
                     winner.setText("The Current winner of the poll is " + polls.getWinner());
                     option1.setText(polls.getOptions().getOption1());
                     option2.setText(polls.getOptions().getOption2());
@@ -135,6 +102,7 @@ public class Results extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<Poll> call, Throwable t) {
+                //creating a toast message if an error occurs
                 Toast.makeText(Results.this, t.getMessage(), Toast.LENGTH_LONG).show();
                 Log.e("TAG", "onFailure: ", t);
             }
@@ -143,31 +111,34 @@ public class Results extends AppCompatActivity {
 
     }
 
-    public void switchScreen(View v)
-    {
-        Intent intent = new Intent(Results.this, Home.class);
-        startActivity(intent);
-        finish();
-    }
-
+    //creating the top menu bar
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
+        //creating a new menu inflater
         MenuInflater inflater = getMenuInflater();
+        //setting which menu to inflate it with
         inflater.inflate(R.menu.topbar_menu, menu);
-        this.setTitle("Popular vote or Majority vote results");
         return true;
     }
 
+    //method for when an item is selected from the menu bar
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()){
+            //if the id selected is for the log out button
             case R.id.LogOut:
+                //get a shared preference editor
                 SharedPreferences.Editor editor = sharedPreferences.edit();
+                //update the values withing the preferences
                 editor.putString("email", "");
                 editor.putBoolean("Logged in", false);
+                //apply the updates
                 editor.apply();
+                //create a new intent for the main activity(Log in page)
                 Intent intent = new Intent(Results.this, MainActivity.class);
+                //start the activity
                 startActivity(intent);
+                //finish this activity
                 finish();
         }
         return super.onOptionsItemSelected(item);
