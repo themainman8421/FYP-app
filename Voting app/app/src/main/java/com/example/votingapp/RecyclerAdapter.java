@@ -12,12 +12,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+//adapter class for the recycler view
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyViewHolder> {
 
     private Context mContext;
     private ArrayList<Poll> pollList;
     private OnPollListener onPollListener;
 
+    //constructor
     public RecyclerAdapter(Context mContext, ArrayList<Poll> pollList, OnPollListener onPollListener) {
         this.mContext = mContext;
         this.pollList = pollList;
@@ -28,6 +30,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     @Override
     public MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
+        //inflating the recycler view with the layout created
         View v;
         LayoutInflater layoutInflater = LayoutInflater.from(mContext);
         v = layoutInflater.inflate(R.layout.adapter_list_layout, parent, false);
@@ -37,6 +40,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
     @Override
     public void onBindViewHolder(@NonNull MyViewHolder holder, int position) {
 
+        //adding text to the layout and getting the info from the poll data received
         String title = "<strong>Title: </strong> " + pollList.get(position).getTitle();
         String winner = "<strong>Winner: </strong> " + pollList.get(position).getWinner();
         String votingMethod = "<strong>Voting method used: </strong> " + pollList.get(position).getVotingmethod();
@@ -52,11 +56,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
     }
 
+    //counting the size of the poll list
     @Override
     public int getItemCount() {
         return pollList.size();
     }
 
+    //finding the views in the layout adapted to the recycler view and adding a onclick listener
     public static class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         TextView title, votingmethod, code, winner;
@@ -76,12 +82,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.MyView
 
         }
 
+        //getting the position of the row clicked
         @Override
         public void onClick(View v) {
             onPollListener.onPollClick(getAdapterPosition());
         }
     }
 
+    //interface listening to get the position clicked
     public interface OnPollListener{
         void onPollClick(int position);
     }
