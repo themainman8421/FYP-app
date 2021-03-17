@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -76,97 +77,134 @@ public class CreatePoll extends AppCompatActivity {
         submitbtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //https://stackoverflow.com/questions/6440259/how-to-get-the-selected-index-of-a-radiogroup-in-android
 
                 //getting the id of the radio button
                 int radioButtonID = radioGroup.getCheckedRadioButtonId();
                 View radioButton = radioGroup.findViewById(radioButtonID);
                 int idx = radioGroup.indexOfChild(radioButton);
 
-                //getting the string contained within the selected button
-                RadioButton r = (RadioButton) radioGroup.getChildAt(idx);
-                String selectedtext = r.getText().toString();
+                //getting the string of the text views
+                String titlestr = title.getText().toString();
+                String option1str = option1.getText().toString();
+                String option2str = option2.getText().toString();
+                String pollcodestr = pollcodeedittext.getText().toString();
 
-                //creating a new hashmap
-                HashMap<String, String> map = new HashMap<>();
+                //checking that all fields have been filled before submitting the form
+                if (titlestr.matches("") && option1str.matches("") && option2str.matches("") && pollcodestr.matches("")) {
+                    title.setError("Title cannot be blank");
+                    option1.setError("Option cannot be blank");
+                    option2.setError("Option cannot be blank");
+                    pollcodeedittext.setError("Poll code cannot be blank");
+                }else if(option1str.matches("") && option2str.matches("") && pollcodestr.matches("")){
+                    option1.setError("Option cannot be blank");
+                    option2.setError("Option cannot be blank");
+                    pollcodeedittext.setError("Poll code cannot be blank");
+                }else if(option2str.matches("") && pollcodestr.matches("")){
+                    option2.setError("Option cannot be blank");
+                    pollcodeedittext.setError("Poll code cannot be blank");
+                }else if(titlestr.matches("")){
+                    title.setError("Title cannot be blank");
+                }else if(option1str.matches("")){
+                    option1.setError("Option cannot be blank");
+                }else if(option2str.matches("")){
+                    option2.setError("Option cannot be blank");
+                }else if(pollcodestr.matches("")){
+                    pollcodeedittext.setError("Poll code cannot be blank");
+                }
+                else if(idx == -1){
+                    Toast.makeText(CreatePoll.this, "Please select a voting method", Toast.LENGTH_LONG).show();
+                }
+                else {
 
-                //inserting into the text into the hashmap
-                map.put("title", title.getText().toString());
-                map.put("option1", option1.getText().toString());
-                map.put("option2", option2.getText().toString());
-                map.put("option3", option3.getText().toString());
-                map.put("code", pollcodeedittext.getText().toString());
-                map.put("winner", "there current is no winner");
-                map.put("votingmethod", selectedtext);
+
+                    //https://stackoverflow.com/questions/6440259/how-to-get-the-selected-index-of-a-radiogroup-in-android
 
 
-                //creating a retrofit call to check if the poll code entered is in use
-                Call<Void> call = RetrofitInterface.pollInUse(map);
 
-                //queuing the call
-                call.enqueue((new Callback<Void>() {
-                    @Override
-                    public void onResponse(Call<Void> call, Response<Void> response) {
-                        //if the code is in use send a toast message
-                        if(response.code() == 400){
-                            pollcodeedittext.setError("Poll code already in use");
-                        }
-                        else{
+                    //getting the string contained within the selected button
+                    RadioButton r = (RadioButton) radioGroup.getChildAt(idx);
+                    String selectedtext = r.getText().toString();
 
-                            //if the radio button index is 0 or 1 create a new retrofit call to store the poll for Popular Vote or Majority Vote
-                            if(0 == idx || 1 == idx){
-                                //creating the call
-                                Call<Void> secondCall = RetrofitInterface.executenewPoll(map);
+                    //creating a new hashmap
+                    HashMap<String, String> map = new HashMap<>();
 
-                                //queuing the call
-                                secondCall.enqueue(new Callback<Void>() {
-                                    @Override
-                                    public void onResponse(Call<Void> call, Response<Void> response) {
-                                        //send a toast messsage if the poll was created
-                                        if(response.code() == 200){
-                                            Toast.makeText(CreatePoll.this, "Poll created", Toast.LENGTH_LONG).show();
+                    //inserting into the text into the hashmap
+                    map.put("title", title.getText().toString());
+                    map.put("option1", option1.getText().toString());
+                    map.put("option2", option2.getText().toString());
+                    map.put("option3", option3.getText().toString());
+                    map.put("code", pollcodeedittext.getText().toString());
+                    map.put("winner", "there current is no winner");
+                    map.put("votingmethod", selectedtext);
+
+
+                    //creating a retrofit call to check if the poll code entered is in use
+                    Call<Void> call = RetrofitInterface.pollInUse(map);
+
+                    //queuing the call
+                    call.enqueue((new Callback<Void>() {
+                        @Override
+                        public void onResponse(Call<Void> call, Response<Void> response) {
+                            //if the code is in use send a toast message
+                            if (response.code() == 400) {
+                                pollcodeedittext.setError("Poll code already in use");
+                            } else {
+
+                                //if the radio button index is 0 or 1 create a new retrofit call to store the poll for Popular Vote or Majority Vote
+                                if (0 == idx || 1 == idx) {
+                                    //creating the call
+                                    Call<Void> secondCall = RetrofitInterface.executenewPoll(map);
+
+                                    //queuing the call
+                                    secondCall.enqueue(new Callback<Void>() {
+                                        @Override
+                                        public void onResponse(Call<Void> call, Response<Void> response) {
+                                            //send a toast messsage if the poll was created
+                                            if (response.code() == 200) {
+                                                Toast.makeText(CreatePoll.this, "Poll created", Toast.LENGTH_LONG).show();
+                                            }
                                         }
-                                    }
 
-                                    @Override
-                                    public void onFailure(Call<Void> call, Throwable t) {
-                                        //send toast message if an error occurred
-                                        Toast.makeText(CreatePoll.this, t.getMessage(), Toast.LENGTH_LONG).show();
-                                    }
-                                });
-                                //if the radio index is 2 create a new retrofit index for storing an ranked choice vote
-                            } else if(2 == idx){
-                                //creating a new retrofit call to create an a ranked choice poll
-                                Call<Void> thirdCall = RetrofitInterface.createAlternativeVotePoll(map);
-
-                                //queuing the call
-                                thirdCall.enqueue(new Callback<Void>() {
-                                    @Override
-                                    public void onResponse(Call<Void> call, Response<Void> response) {
-                                        //send toast message if everything went okay
-                                        if(response.code() == 200){
-                                            Toast.makeText(CreatePoll.this, "Poll created", Toast.LENGTH_LONG).show();
+                                        @Override
+                                        public void onFailure(Call<Void> call, Throwable t) {
+                                            //send toast message if an error occurred
+                                            Toast.makeText(CreatePoll.this, t.getMessage(), Toast.LENGTH_LONG).show();
                                         }
-                                    }
+                                    });
+                                    //if the radio index is 2 create a new retrofit index for storing an ranked choice vote
+                                } else if (2 == idx) {
+                                    //creating a new retrofit call to create an a ranked choice poll
+                                    Call<Void> thirdCall = RetrofitInterface.createAlternativeVotePoll(map);
 
-                                    @Override
-                                    public void onFailure(Call<Void> call, Throwable t) {
-                                        //if theres an error create a toast message
-                                        Toast.makeText(CreatePoll.this, t.getMessage(), Toast.LENGTH_LONG).show();
-                                    }
-                                });
+                                    //queuing the call
+                                    thirdCall.enqueue(new Callback<Void>() {
+                                        @Override
+                                        public void onResponse(Call<Void> call, Response<Void> response) {
+                                            //send toast message if everything went okay
+                                            if (response.code() == 200) {
+                                                Toast.makeText(CreatePoll.this, "Poll created", Toast.LENGTH_LONG).show();
+                                            }
+                                        }
+
+                                        @Override
+                                        public void onFailure(Call<Void> call, Throwable t) {
+                                            //if theres an error create a toast message
+                                            Toast.makeText(CreatePoll.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                                        }
+                                    });
+                                }
+
                             }
-
                         }
-                    }
 
-                    @Override
-                    public void onFailure(Call<Void> call, Throwable t) {
-                        //if theres an error create a toast message
-                        Toast.makeText(CreatePoll.this, t.getMessage(), Toast.LENGTH_LONG).show();
-                    }
-                }));
+                        @Override
+                        public void onFailure(Call<Void> call, Throwable t) {
+                            //if theres an error create a toast message
+                            Toast.makeText(CreatePoll.this, t.getMessage(), Toast.LENGTH_LONG).show();
+                        }
+                    }));
 
+                }
             }
         });
 

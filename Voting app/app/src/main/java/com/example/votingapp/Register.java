@@ -57,7 +57,6 @@ public class Register extends Activity {
 
         nameEdit.setSingleLine(true);
         emailEdit.setSingleLine(true);
-        passwordEdit.setSingleLine(true);
 
         //text to add
         String text = ("Already have an Account? Click here to log in");

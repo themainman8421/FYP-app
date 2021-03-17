@@ -69,10 +69,9 @@ public class MainActivity extends Activity {
         loginbtn = (Button) findViewById(R.id.loginbtn);
         voteImage = (ImageView)findViewById(R.id.voteImage);
         register = (TextView)findViewById(R.id.register);
-        voteImage.setImageResource(R.drawable.mobile_vote_image);
+//        voteImage.setImageResource(R.drawable.mobile_vote_image);
 
         emailEdit.setSingleLine(true);
-        passwordEdit.setSingleLine(true);
 
         //Creating a string for users who need to register
         String text = ("Dont have an account? Click here to Register");

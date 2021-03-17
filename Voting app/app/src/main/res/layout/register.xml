@@ -22,7 +22,7 @@
         android:id="@+id/nameEdit"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
+        android:layout_margin="8dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/voteImage"
         android:hint="Enter name"
@@ -40,7 +40,7 @@
         android:id="@+id/emailEdit"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_margin="8dp"
         android:layout_marginBottom="8dp"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/nameEdit"
@@ -77,7 +77,7 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_margin="10dp"
+        android:layout_margin="8dp"
         android:text="Register"
         android:layout_centerHorizontal="true"
         android:layout_below="@+id/passwordEdit"
@@ -91,10 +91,10 @@
         android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_margin="8dp"
         android:layout_below="@id/registerbtn"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true"
-        android:layout_marginTop="20dp"
         android:textSize="20dp"
         ></TextView>
 
