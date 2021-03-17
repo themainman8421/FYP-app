@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="success_poll_created">You have successfully created a poll with poll code %1$s!</string>
+</resources>

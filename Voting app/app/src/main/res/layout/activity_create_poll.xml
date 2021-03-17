@@ -193,10 +193,48 @@
         android:layout_marginRight="20dp"></EditText>
 
     <TextView
-        android:id="@+id/pollcodeView"
+        android:id="@+id/switchtext"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/option3"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:text="Do you want your poll to be private?"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"></TextView>
+
+    <Switch
+        android:id="@+id/switchButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/switchtext"
+        android:layout_centerHorizontal="true"
+        android:text="Do you want your poll to be private?"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textColor="@color/black"
+        android:background="@color/white"
+        android:paddingTop="5dp"
+        android:paddingRight="5dp"
+        android:paddingLeft="5dp"
+        android:paddingBottom="5dp"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        ></Switch>
+
+    <TextView
+        android:id="@+id/pollcodeView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/switchButton"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:text="Code to join the poll"

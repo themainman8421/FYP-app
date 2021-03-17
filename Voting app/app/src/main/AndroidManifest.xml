@@ -54,6 +54,7 @@
         <activity   android:name=".MyPolls"
                     android:label="My Polls"></activity>
         <activity   android:name=".SuccessfulRegister"></activity>
+        <activity android:name=".SuccessfulPollCreated"></activity>
     </application>
 
 </manifest>

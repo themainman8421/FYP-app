@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Switch;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -41,6 +42,8 @@ public class CreatePoll extends AppCompatActivity {
     Button submitbtn;
     RadioButton radioButton, radioButton2, radioButton3;
     RadioGroup radioGroup;
+    Switch switchButton;
+    String switchstatus;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +68,8 @@ public class CreatePoll extends AppCompatActivity {
         radioButton = findViewById(R.id.radioButton);
         radioButton2 = findViewById(R.id.radioButton2);
         radioButton3 = findViewById(R.id.radioButton3);
+        switchButton = findViewById(R.id.switchButton);
+
 
         title.setSingleLine(true);
         option1.setSingleLine(true);
@@ -116,6 +121,11 @@ public class CreatePoll extends AppCompatActivity {
                 }
                 else {
 
+                    if(switchButton.isChecked()){
+                        switchstatus = "true";
+                    }else{
+                        switchstatus = "false";
+                    }
 
                     //https://stackoverflow.com/questions/6440259/how-to-get-the-selected-index-of-a-radiogroup-in-android
 
@@ -136,6 +146,7 @@ public class CreatePoll extends AppCompatActivity {
                     map.put("code", pollcodeedittext.getText().toString());
                     map.put("winner", "there current is no winner");
                     map.put("votingmethod", selectedtext);
+                    map.put("private", switchstatus);
 
 
                     //creating a retrofit call to check if the poll code entered is in use
@@ -162,6 +173,9 @@ public class CreatePoll extends AppCompatActivity {
                                             //send a toast messsage if the poll was created
                                             if (response.code() == 200) {
                                                 Toast.makeText(CreatePoll.this, "Poll created", Toast.LENGTH_LONG).show();
+                                                Intent intent = new Intent(CreatePoll.this, SuccessfulPollCreated.class);
+                                                intent.putExtra("code", pollcodeedittext.getText().toString());
+                                                startActivity(intent);
                                             }
                                         }
 
@@ -183,6 +197,9 @@ public class CreatePoll extends AppCompatActivity {
                                             //send toast message if everything went okay
                                             if (response.code() == 200) {
                                                 Toast.makeText(CreatePoll.this, "Poll created", Toast.LENGTH_LONG).show();
+                                                Intent intent = new Intent(CreatePoll.this, SuccessfulPollCreated.class);
+                                                intent.putExtra("code", pollcodeedittext.getText().toString());
+                                                startActivity(intent);
                                             }
                                         }
 
