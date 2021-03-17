@@ -52,6 +52,8 @@ public class JoinPoll extends AppCompatActivity {
         pollCodeEditText = findViewById(R.id.pollCodeEditText);
         submitbtn = findViewById(R.id.submitbtn);
 
+        pollCodeEditText.setSingleLine(true);
+
         //setting a onclick listener for the submit button
         submitbtn.setOnClickListener(new View.OnClickListener() {
             @Override

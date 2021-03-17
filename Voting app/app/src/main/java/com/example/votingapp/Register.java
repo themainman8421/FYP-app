@@ -55,6 +55,10 @@ public class Register extends Activity {
         registerbtn = (Button) findViewById(R.id.registerbtn);
         login = (TextView) findViewById(R.id.login);
 
+        nameEdit.setSingleLine(true);
+        emailEdit.setSingleLine(true);
+        passwordEdit.setSingleLine(true);
+
         //text to add
         String text = ("Already have an Account? Click here to log in");
 

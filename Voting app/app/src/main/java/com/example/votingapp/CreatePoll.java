@@ -65,6 +65,12 @@ public class CreatePoll extends AppCompatActivity {
         radioButton2 = findViewById(R.id.radioButton2);
         radioButton3 = findViewById(R.id.radioButton3);
 
+        title.setSingleLine(true);
+        option1.setSingleLine(true);
+        option2.setSingleLine(true);
+        option3.setSingleLine(true);
+        pollcodeedittext.setSingleLine(true);
+
 
         //setting a onclick listener for the submit button
         submitbtn.setOnClickListener(new View.OnClickListener() {
