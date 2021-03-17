@@ -107,9 +107,11 @@ public class Voting extends AppCompatActivity {
                 int idx = radioGroup.indexOfChild(radioButton);
                 Log.d("radio", "onCreate() returned: " + idx);
 
-                //if no option has been selected send a toast message
+                //if no option has been selected send a toast message or if options chosen is blank send a toast message
                 if(idx == -1){
                     Toast.makeText(Voting.this, "You must select an option", Toast.LENGTH_LONG).show();
+                }else if(idx == 2 && option3.getText().equals("")){
+                    Toast.makeText(Voting.this, "Your voting option cannot be blank", Toast.LENGTH_LONG).show();
                 }
                 //put the option chosen into the hashmap
                 else {
