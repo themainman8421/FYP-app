@@ -1,7 +1,4 @@
-package com.example.votingapp;
-
-import java.util.ArrayList;
-import java.util.List;
+package com.example.votingapp.objects;
 
 // Json Class for the poll
 public class Poll {

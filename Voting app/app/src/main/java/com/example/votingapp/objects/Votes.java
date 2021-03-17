@@ -1,4 +1,4 @@
-package com.example.votingapp;
+package com.example.votingapp.objects;
 
 //nested JSON class that gets the votes for popular or majority votes
 public class Votes {

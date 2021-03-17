@@ -1,4 +1,4 @@
-package com.example.votingapp;
+package com.example.votingapp.objects;
 
 //Nested Json Class for the poll options
 public class Options {

@@ -10,6 +10,8 @@ import androidx.annotation.NonNull;
 import androidx.core.text.HtmlCompat;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.votingapp.objects.Poll;
+
 import java.util.ArrayList;
 
 //adapter class for the recycler view

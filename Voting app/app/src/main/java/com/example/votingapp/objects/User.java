@@ -1,4 +1,4 @@
-package com.example.votingapp;
+package com.example.votingapp.objects;
 
 //class that get the user info from requests
 public class User {
