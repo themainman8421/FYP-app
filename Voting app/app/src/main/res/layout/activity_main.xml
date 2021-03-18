@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,76 +7,90 @@
     android:background="@color/gray"
     tools:context=".MainActivity">
 
-    <ImageView
-        android:layout_width="wrap_content"
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/voteImage"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="50dp"
-        android:layout_marginTop="100dp"
-        android:src="@drawable/mobile_vote_image"
-        ></ImageView>
+        android:fillViewport="true">
 
-    <EditText
-        android:id="@+id/emailEdit"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/voteImage"
-        android:hint="Enter email"
-        android:textAlignment="center"
-        android:textColorHint="@color/gray"
-        android:textColor="@color/black"
-        android:background="@color/white"
-        android:paddingTop="5dp"
-        android:paddingRight="5dp"
-        android:paddingLeft="5dp"
-        android:paddingBottom="5dp"
-        ></EditText>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/voteImage"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="108dp"
+            android:layout_marginTop="50dp"
+            android:src="@drawable/mobile_vote_image"
+            ></ImageView>
 
-    <EditText
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:hint="Enter password"
-        android:id="@+id/passwordEdit"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/emailEdit"
-        android:inputType="textPassword"
-        android:textAlignment="center"
-        android:textColorHint="@color/gray"
-        android:textColor="@color/black"
-        android:background="@color/white"
-        android:paddingTop="5dp"
-        android:paddingRight="5dp"
-        android:paddingLeft="5dp"
-        android:paddingBottom="5dp"
-        ></EditText>
+        <EditText
+            android:id="@+id/emailEdit"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="45dp"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/voteImage"
+            android:hint="Enter email"
+            android:textAlignment="center"
+            android:textColorHint="@color/gray"
+            android:textColor="@color/black"
+            android:background="@color/white"
+            android:paddingTop="5dp"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:paddingBottom="5dp"
+            ></EditText>
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:text="Log in"
-        android:layout_centerHorizontal="true"
-        android:layout_below="@+id/passwordEdit"
-        android:id="@+id/loginbtn"
-        android:background="@drawable/rounded_corners"
-        android:textColor="@color/white"
-        android:padding="10dp"
-        ></Button>
+        <EditText
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:hint="Enter password"
+            android:id="@+id/passwordEdit"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/emailEdit"
+            android:inputType="textPassword"
+            android:textAlignment="center"
+            android:textColorHint="@color/gray"
+            android:textColor="@color/black"
+            android:background="@color/white"
+            android:paddingTop="5dp"
+            android:paddingRight="5dp"
+            android:paddingLeft="5dp"
+            android:paddingBottom="5dp"
+            ></EditText>
 
-    <TextView
-        android:id="@+id/register"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="8dp"
-        android:layout_below="@id/loginbtn"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_marginTop="20dp"
-        android:textSize="20dp"
-        ></TextView>
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10pt"
+            android:layout_marginRight="8dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginBottom="8dp"
+            android:text="Log in"
+            android:layout_centerHorizontal="true"
+            android:layout_below="@+id/passwordEdit"
+            android:id="@+id/loginbtn"
+            android:background="@drawable/rounded_corners"
+            android:textColor="@color/white"
+            android:padding="10dp"
+            ></Button>
 
-</RelativeLayout>
+        <TextView
+            android:id="@+id/register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            android:layout_below="@id/loginbtn"
+            android:layout_centerHorizontal="true"
+            android:layout_centerVertical="true"
+            android:layout_marginTop="20dp"
+            android:textSize="20dp"
+            ></TextView>
+    </RelativeLayout>
+
+
+
+</ScrollView>
