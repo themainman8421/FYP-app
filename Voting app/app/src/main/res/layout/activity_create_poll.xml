@@ -89,7 +89,7 @@
                 android:layout_gravity="center_horizontal"
                 android:checked="false"
                 android:text="Popular Vote"
-                android:textColor="@color/black"
+                android:textColor="@color/light_orange"
                 android:buttonTint="@color/black"
                 android:textSize="20dp" ></RadioButton>
 
@@ -100,7 +100,7 @@
                 android:layout_gravity="center_horizontal"
                 android:checked="false"
                 android:text="Majority Vote"
-                android:textColor="@color/black"
+                android:textColor="@color/teal"
                 android:buttonTint="@color/black"
                 android:textSize="20dp" ></RadioButton>
 
@@ -111,7 +111,7 @@
                 android:layout_gravity="center_horizontal"
                 android:checked="false"
                 android:text="Ranked Choice"
-                android:textColor="@color/black"
+                android:textColor="@color/magenta"
                 android:buttonTint="@color/black"
                 android:textSize="20dp"
                 ></RadioButton>
@@ -145,7 +145,7 @@
             android:layout_centerHorizontal="true"
             android:ems="10"
             android:inputType="text"
-            android:hint="First option"
+            android:hint="First Candidate"
             android:textColorHint="@color/gray"
             android:textColor="@color/black"
             android:background="@color/white"
@@ -165,7 +165,7 @@
             android:layout_centerHorizontal="true"
             android:ems="10"
             android:inputType="text"
-            android:hint="Second option"
+            android:hint="Second Candidate"
             android:textColorHint="@color/gray"
             android:textColor="@color/black"
             android:background="@color/white"
@@ -185,7 +185,7 @@
             android:layout_centerHorizontal="true"
             android:ems="10"
             android:inputType="text"
-            android:hint="Third option"
+            android:hint="Third Candidate"
             android:textColorHint="@color/gray"
             android:textColor="@color/black"
             android:background="@color/white"

@@ -33,7 +33,7 @@ public interface RetrofitInterface {
     Call<Void> createAlternativeVotePoll(
             @Body HashMap<String, String> map);
 
-    //checks if the poll vode is in use
+    //checks if the poll code is in use
     @POST("/poll/pollInUse")
     Call<Void> pollInUse(@Body HashMap<String, String> map);
 

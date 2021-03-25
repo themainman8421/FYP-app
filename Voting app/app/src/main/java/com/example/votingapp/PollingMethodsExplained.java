@@ -62,6 +62,16 @@ public class PollingMethodsExplained extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //creating the top menu bar
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        //creating a new menu inflater
+        MenuInflater inflater = getMenuInflater();
+        //setting which menu to inflate it with
+        inflater.inflate(R.menu.topbar_menu, menu);
+        return true;
+    }
+
     //    https://github.com/RajNirmal/PreExam2.0/blob/master/app/src/main/java/com/spintum/preexam/Exam_cards.java
     private void updateTabColors(){
         LinearLayout tabsContainer = (LinearLayout) tabs.getChildAt(0);
@@ -69,15 +79,18 @@ public class PollingMethodsExplained extends AppCompatActivity {
             if (i == 0){
                 LinearLayout item = (LinearLayout) tabsContainer.getChildAt(i);
                 TextView tv = (TextView) item.getChildAt(1);
-                tv.setTextColor(Select[i] == -1 ? Color.BLUE : Color.BLUE);
+                tv.setTextSize(20);
+                tv.setTextColor(Select[i] == -1 ? Color.HSVToColor(new float[]{ 20f, 80f, 100f } ) : Color.BLUE);
             }else if(i == 1){
                 LinearLayout item = (LinearLayout) tabsContainer.getChildAt(i);
                 TextView tv = (TextView) item.getChildAt(1);
-                tv.setTextColor(Select[i] == -1 ? Color.RED : Color.BLUE);
+                tv.setTextSize(20);
+                tv.setTextColor(Select[i] == -1 ? Color.HSVToColor(new float[]{ 209f, 42f, 94f } ) : Color.BLUE);
             }else{
                 LinearLayout item = (LinearLayout) tabsContainer.getChildAt(i);
                 TextView tv = (TextView) item.getChildAt(1);
-                tv.setTextColor(Select[i] == -1 ? Color.HSVToColor(new float[]{ 120f, 70f, 66f } ) : Color.BLUE);
+                tv.setTextSize(20);
+                tv.setTextColor(Select[i] == -1 ? Color.HSVToColor(new float[]{ 2f, 64f, 85f } ) : Color.BLUE);
             }
         }
     }

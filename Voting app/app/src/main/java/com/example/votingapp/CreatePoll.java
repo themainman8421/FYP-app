@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -76,6 +77,8 @@ public class CreatePoll extends AppCompatActivity {
         option2.setSingleLine(true);
         option3.setSingleLine(true);
         pollcodeedittext.setSingleLine(true);
+
+        option1.setTextColor(Color.HSVToColor(new float[]{ 30f, 86f, 86f } ));
 
 
         //setting a onclick listener for the submit button

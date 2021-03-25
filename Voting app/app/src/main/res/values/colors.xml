@@ -9,4 +9,7 @@
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#616963</color>
     <color name="grey">#343634</color>
+    <color name="magenta">#d9534f</color>
+    <color name="light_orange">#ff7733</color>
+    <color name="teal">#8abeef</color>
 </resources>
