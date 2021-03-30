@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/gray"
     tools:context=".PollingMethodsExplained">
 
 
@@ -17,7 +18,7 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
-        android:layout_height="632dp"
+        android:layout_height="661dp"
         android:layout_marginTop="50dp"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
